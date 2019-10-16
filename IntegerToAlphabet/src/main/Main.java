@@ -13,7 +13,8 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import search.RegexSearcher;
-import search.operator.MaxLengthOperator;
+import search.operator.OperatorEnum;
+import search.operator.OperatorFactory;
 import translate.ITranslator;
 import translate.Translate;
 
@@ -40,7 +41,7 @@ public class Main {
 
 		// Effective translation
 
-		LookForRegex(translator, 5);
+		LookForRegex(translator, 4);
 
 	}
 
@@ -54,7 +55,7 @@ public class Main {
 
 			Collection<Callable<String>> searchers = new ArrayList<>();
 			conf.forEach(pair -> searchers.add(new RegexSearcher(pair[0].trim(), pair[1].trim(),
-					translator.getTranslatedText(), new MaxLengthOperator())));
+					translator.getTranslatedText(), OperatorFactory.getOperator(OperatorEnum.MAX_LENGTH))));
 
 			ExecutorService executorService = Executors.newFixedThreadPool(nbProcess);
 

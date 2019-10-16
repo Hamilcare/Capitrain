@@ -2,6 +2,8 @@ package search.operator;
 
 import java.util.regex.MatchResult;
 
+import search.operator.booleanFunction.IBooleanFunction;
+
 public interface IOperator {
 	
 	/**
@@ -14,11 +16,29 @@ public interface IOperator {
 	 */
 	String name();
 	
+	IBooleanFunction booleanFunction();
+	
+	/**
+	 * set currentResult
+	 */
+	void setCurrentResult(MatchResult newCurrentResult);
+	
+	
+	
 	/**
 	 * Regarde si le param est meilleur que le résultat stocké précedemment
 	 * @param currentMatch
 	 */
-	void compute(MatchResult currentMatch);
+	
+	default void compute(MatchResult currentMatch) {
+		if(null == currentResult()) {
+			setCurrentResult(currentMatch);
+		} else {
+			if(booleanFunction().op(currentResult(), currentMatch)) {
+				setCurrentResult(currentMatch);
+			}
+		}
+	}
 	
 	/**
 	 * print result in a readable way
