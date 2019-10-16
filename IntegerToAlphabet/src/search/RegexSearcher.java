@@ -4,6 +4,7 @@ import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import main.Main;
 import search.operator.IOperator;
 
 public class RegexSearcher implements Runnable, Callable<String> {
@@ -29,13 +30,15 @@ public class RegexSearcher implements Runnable, Callable<String> {
 		this.operator = operator;
 	}
 
+	@SuppressWarnings("unused")
 	public void run() {
 		int cpt = 0;
 		int lastMatch = 0;
 		while (matcher.find()) {
 			cpt++;
-			if (cpt % 10000 == 0 && cpt != lastMatch) {
-//				System.out.println("Pattern : "+name+" : "+(double)matcher.end()/problemSize*100);//(matcher.end()/problemSize*100)+" %");
+			if (Main.IS_DEBUG_ENABLE && cpt % 10000 == 0 && cpt != lastMatch) {
+				System.out.println("Pattern : " + name + " : " + (double) matcher.end() / problemSize * 100);// (matcher.end()/problemSize*100)+"
+																												// %");
 				lastMatch = cpt;
 			}
 			if (hasOperator()) {
@@ -53,10 +56,9 @@ public class RegexSearcher implements Runnable, Callable<String> {
 		return null != operator;
 	}
 
-	@Override
 	public String call() throws Exception {
 		run();
-		return this.name;
+		return name;
 	}
 
 }

@@ -1,6 +1,8 @@
-package search.operator.booleanFunction;
+package search.operator.booleanFunction.impl;
 
 import java.util.regex.MatchResult;
+
+import search.operator.booleanFunction.IBooleanFunction;
 
 public class MinLengthFunction implements IBooleanFunction{
 

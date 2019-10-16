@@ -21,25 +21,21 @@ import translate.Translate;
 public class Main {
 
 	public static final String CINQUANTE_MILLION = "cinquante_millions";
-	
+
 	public static final String UN_MILLION = "piOneMillion";
 	public static final String CENT_MILLE = "pi100000digit";
-	
-	public static final String INPUT_FILE = CENT_MILLE;
-	
-	public static void main(String[] args) {
-		for (String string : args) {
-			System.out.println(string);
-		}
 
-		// Data source setting
+	public static final String INPUT_FILE = CINQUANTE_MILLION;
+	
+	public static final boolean IS_DEBUG_ENABLE = false;
+
+	public static void main(String[] args) {
+
 		long startTranslation = System.currentTimeMillis();
-		ITranslator translator = piUnMillion();
+		ITranslator translator = translateInput();
 		long endTranslation = System.currentTimeMillis();
 
 		System.out.println("Traduction en " + (endTranslation - startTranslation) + " ms");
-
-		// Effective translation
 
 		LookForRegex(translator, 4);
 
@@ -48,14 +44,8 @@ public class Main {
 	/** Recherche les patterns définis dans la config **/
 	public static void LookForRegex(ITranslator translator, int nbProcess) {
 
-		BufferedReader br;
 		try {
-			br = Files.newBufferedReader(Paths.get("./resources/config/regex.confg"));
-			List<String[]> conf = br.lines().map(str -> str.split("\\|\\|")).collect(Collectors.toList());
-
-			Collection<Callable<String>> searchers = new ArrayList<>();
-			conf.forEach(pair -> searchers.add(new RegexSearcher(pair[0].trim(), pair[1].trim(),
-					translator.getTranslatedText(), OperatorFactory.getOperator(OperatorEnum.MAX_LENGTH))));
+			Collection<Callable<String>> searchers = preparePatternMatchers(translator);
 
 			ExecutorService executorService = Executors.newFixedThreadPool(nbProcess);
 
@@ -71,10 +61,30 @@ public class Main {
 		}
 	}
 
-	/** Lit le nombre pi et le traduit dans l'alphabet **/
-	public static ITranslator piUnMillion() {
+	/**
+	 * lit le fichier de conf et prépare un pattern matcher par pattern
+	 * 
+	 * @param translator
+	 * @return
+	 * @throws IOException
+	 */
+	private static Collection<Callable<String>> preparePatternMatchers(ITranslator translator) throws IOException {
+		BufferedReader br;
+		br = Files.newBufferedReader(Paths.get("./resources/config/regex.confg"));
+		List<String[]> conf = br.lines().map(str -> str.split("\\|\\|")).collect(Collectors.toList());
+
+		Collection<Callable<String>> searchers = new ArrayList<>();
+		conf.forEach(pair -> searchers.add(new RegexSearcher(pair[0].trim(), pair[1].trim(),
+				translator.getTranslatedText(), OperatorFactory.getOperator(OperatorEnum.MAX_LENGTH))));
+		return searchers;
+	}
+
+	/**
+	 * @see {@link #INPUT_FILE} Lit le nombre pi et le traduit dans l'alphabet
+	 **/
+	public static ITranslator translateInput() {
 		try {
-			String content = new String(Files.readAllBytes(Paths.get("./resources/input/"+INPUT_FILE)));
+			String content = new String(Files.readAllBytes(Paths.get("./resources/input/" + INPUT_FILE)));
 			System.out.println("Text contains " + content.length() + " characters");
 
 			List<Integer> textToTranslate = new ArrayList<>(content.length());
