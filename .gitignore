@@ -30,3 +30,7 @@ target/
 .classpath
 .project
 .metadata/
+
+# intelliJ project file
+.idea/
+*.iml
