@@ -13,31 +13,40 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import search.RegexSearcher;
-import search.operator.OperatorEnum;
-import search.operator.OperatorFactory;
+import search.aggregator.AggreEnum;
+import search.feature.FeatureEnum;
 import translate.ITranslator;
 import translate.Translate;
 
 public class Main {
 
+	public static final String CINQ_CENT_MILLION = "xaa";
+
 	public static final String CINQUANTE_MILLION = "cinquante_millions";
 
 	public static final String UN_MILLION = "piOneMillion";
+
 	public static final String CENT_MILLE = "pi100000digit";
 
-	public static final String INPUT_FILE = CINQUANTE_MILLION;
-	
-	public static final boolean IS_DEBUG_ENABLE = false;
+	public static final String MILLIARD = "milliard";
 
-	public static void main(String[] args) {
+	public static final String EXEMPLE = "exemple";
 
+	public static final String INPUT_FILE = CINQ_CENT_MILLION;
+
+	public static final int NB_THREAD = 1;
+
+	public static final boolean IS_DEBUG_ENABLE = true;
+
+	public static void main(String[] args) throws InterruptedException {
+//		Thread.sleep(20000);
 		long startTranslation = System.currentTimeMillis();
 		ITranslator translator = translateInput();
 		long endTranslation = System.currentTimeMillis();
 
 		System.out.println("Traduction en " + (endTranslation - startTranslation) + " ms");
 
-		LookForRegex(translator, 4);
+		LookForRegex(translator, NB_THREAD);
 
 	}
 
@@ -70,12 +79,12 @@ public class Main {
 	 */
 	private static Collection<Callable<String>> preparePatternMatchers(ITranslator translator) throws IOException {
 		BufferedReader br;
-		br = Files.newBufferedReader(Paths.get("./resources/config/regex.confg"));
-		List<String[]> conf = br.lines().map(str -> str.split("\\|\\|")).collect(Collectors.toList());
+		br = Files.newBufferedReader(Paths.get("./resources/config/debug.config"));
+		List<String[]> conf = br.lines().map(str -> str.split(";")).collect(Collectors.toList());
 
 		Collection<Callable<String>> searchers = new ArrayList<>();
-		conf.forEach(pair -> searchers.add(new RegexSearcher(pair[0].trim(), pair[1].trim(),
-				translator.getTranslatedText(), OperatorFactory.getOperator(OperatorEnum.MAX_LENGTH))));
+		conf.forEach(confLine -> searchers.add(new RegexSearcher(confLine[0].trim(), confLine[1].trim(),
+				translator.getTextToTranslate(), translator.getTranslatedText(), FeatureEnum.ONE, AggreEnum.SUM)));
 		return searchers;
 	}
 
