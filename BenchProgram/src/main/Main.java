@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Main {
     public static final String inputDirPath = "./resources/input/";
@@ -49,24 +51,24 @@ public class Main {
     private static String jarName;
     private static String benchDirectory;
 
-    public static void main(String[] args) throws IOException, InterruptedException{
+	public static void main(String[] args) throws IOException, InterruptedException {
 
-        if(args.length < 1){
-            throw new IllegalArgumentException("Missing parameter: path to jar executable ");
-        }
-        jarPath = args[0];
+		if (args.length < 1) {
+			throw new IllegalArgumentException("Missing parameter: path to jar executable ");
+		}
+		jarPath = args[0];
 
-        //Create directory for benchmark outputs
-        String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        benchDirectory = "./benchmarks/" + date;
-        new File(benchDirectory).mkdirs();
+		// Create directory for benchmark outputs
+		String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		benchDirectory = "./benchmarks/" + date;
+		new File(benchDirectory).mkdirs();
 
-        //Get length of each file
-        int[] filesSize = new int[files.length];
-        for (int i = 0 ; i < files.length; i++) {
-            String content = new String(Files.readAllBytes(Paths.get(inputDirPath + files[i])));
-            filesSize[i] = content.length();
-        }
+		// Get length of each file
+		int[] filesSize = new int[files.length];
+		for (int i = 0; i < files.length; i++) {
+			String content = new String(Files.readAllBytes(Paths.get(inputDirPath + files[i])));
+			filesSize[i] = content.length();
+		}
 
         //Benchmarck for each feature
         for (int patternIndex = 0; patternIndex < patterns.length; patternIndex++) {
@@ -84,8 +86,7 @@ public class Main {
 
             }
         }
-
-    }
+	}
 
     private static long benchFile(String file, String pattern, String feature, String aggregator) throws IOException, InterruptedException{
         String confAbsolutePath = new File("./resources/config/regex.config").getCanonicalPath();
@@ -105,14 +106,14 @@ public class Main {
         }
     }
 
-    private static void writeCsv(String feature, List<String> csvLines) throws IOException{
-        FileWriter writer = new FileWriter(benchDirectory + "/" + feature + ".csv");
-        for (String line : csvLines) {
-            writer.append(line);
-            writer.append("\n");
-        }
-        writer.flush();
-        writer.close();
-    }
+	private static void writeCsv(String feature, List<String> csvLines) throws IOException {
+		FileWriter writer = new FileWriter(benchDirectory + "/" + feature + ".csv");
+		for (String line : csvLines) {
+			writer.append(line);
+			writer.append("\n");
+		}
+		writer.flush();
+		writer.close();
+	}
 
 }
