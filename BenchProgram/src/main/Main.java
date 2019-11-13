@@ -11,7 +11,9 @@ import java.util.*;
 public class Main {
     public static final String inputDirPath = "./resources/input/";
     public static final String[] files = {
-            "pi100000digit"
+            "pi100000digit",
+            "piOneMillion",
+            "cinquante_millions"
     };
     public static final String[] patterns = {
             "increasing",
@@ -20,16 +22,12 @@ public class Main {
     private static String jarName;
     private static String benchDirectory;
 
-    public static void Main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException, InterruptedException{
 
         if(args.length < 1){
-            throw new IllegalArgumentException("Missing parameter: path to directory containing jar executable ");
-        }
-        if(args.length < 2){
-            throw new IllegalArgumentException("Missing parameter: jar executable name");
+            throw new IllegalArgumentException("Missing parameter: path to jar executable ");
         }
         jarPath = args[0];
-        jarName = args[1];
 
         //Create directory for benchmark outputs
         String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -56,16 +54,25 @@ public class Main {
 
     }
 
-    private static long benchFile(String file, String feature) throws IOException{
-        long startTranslation = System.currentTimeMillis();
+    private static long benchFile(String file, String pattern) throws IOException, InterruptedException{
 
-        String confAbsolutePath = new File("./resources/config/regex.conf").getAbsolutePath();
+        String confAbsolutePath = new File("./resources/config/regex.config").getCanonicalPath();
 
-        ProcessBuilder pb = new ProcessBuilder(jarPath, "-jar", jarName, "-p " + feature, "-f one", "-a sum", "-d " + Paths.get(inputDirPath, file).toAbsolutePath().toString(), "-c " + confAbsolutePath);
-        Process p = pb.start();
+        try {
+            long startTranslation = System.currentTimeMillis();
+            String filePath = new File(inputDirPath + file).getCanonicalPath();
+            ProcessBuilder pb = new ProcessBuilder("java", "-jar", jarPath , "-p " + pattern, "-f one", "-a sum", "-d " + filePath, "-c " + confAbsolutePath);
+            Process p = pb.start();
+            p.waitFor();
+            System.out.println(String.join(" ", pb.command()));
+            long endTranslation = System.currentTimeMillis();
+            return endTranslation - startTranslation;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
 
-        long endTranslation = System.currentTimeMillis();
-        return endTranslation - startTranslation;
+
     }
 
     private static void writeCsv(String feature, List<String> csvLines) throws IOException{
