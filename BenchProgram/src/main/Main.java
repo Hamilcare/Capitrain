@@ -11,13 +11,40 @@ import java.util.*;
 public class Main {
     public static final String inputDirPath = "./resources/input/";
     public static final String[] files = {
-            "pi100000digit",
-            "piOneMillion",
-            "cinquante_millions"
+            "pi_100",
+            "pi_1000",
+            "pi_10000",
+            "pi_100000",
+            "pi_1000000",
+            "pi_50000000"
     };
     public static final String[] patterns = {
             "increasing",
+            "increasing_sequence",
+            "increasing_terrace",
+            "summit",
+            "plateau",
+            "proper_plateau",
+            "strictly_increasing_sequence",
+            "peak",
+            "inflexion",
+            "steady",
+            "steady_sequence",
+            "zigzag"
             };
+    public static final String[] features = {
+            "one",
+            "width",
+            "surf",
+            "max",
+            "min",
+            "range"
+    };
+    public static final String[] aggregators = {
+            "max",
+            "min",
+            "sum"
+    };
     private static String jarPath;
     private static String jarName;
     private static String benchDirectory;
@@ -42,37 +69,40 @@ public class Main {
         }
 
         //Benchmarck for each feature
-        for (int featureIndex = 0; featureIndex < patterns.length; featureIndex++) {
-            List<String> csvLines = new ArrayList();
-            csvLines.add("length;duration");
-            for(int fileIndex = 0 ; fileIndex < filesSize.length ; fileIndex++){
-                long delay = benchFile(files[fileIndex], patterns[featureIndex]);
-                csvLines.add(filesSize[fileIndex] + ";" + delay);
+        for (int patternIndex = 0; patternIndex < patterns.length; patternIndex++) {
+            for(int featureIndex = 0; featureIndex < features.length; featureIndex++){
+                for(int aggregatorIndex = 0; aggregatorIndex < aggregators.length; aggregatorIndex++){
+                    System.out.println("COUCOU : " + String.format("%s-%s-%s", patterns[patternIndex], features[featureIndex], aggregators[aggregatorIndex]));
+                    List<String> csvLines = new ArrayList();
+                    csvLines.add("length;duration");
+                    for(int fileIndex = 0 ; fileIndex < filesSize.length ; fileIndex++){
+                        long delay = benchFile(files[fileIndex], patterns[patternIndex], features[featureIndex], aggregators[aggregatorIndex]);
+                        csvLines.add(filesSize[fileIndex] + ";" + delay);
+                    }
+                    writeCsv(String.format("%s-%s-%s", patterns[patternIndex], features[featureIndex], aggregators[aggregatorIndex]), csvLines);
+                }
+
             }
-            writeCsv(patterns[featureIndex], csvLines);
         }
 
     }
 
-    private static long benchFile(String file, String pattern) throws IOException, InterruptedException{
-
+    private static long benchFile(String file, String pattern, String feature, String aggregator) throws IOException, InterruptedException{
         String confAbsolutePath = new File("./resources/config/regex.config").getCanonicalPath();
 
         try {
             long startTranslation = System.currentTimeMillis();
             String filePath = new File(inputDirPath + file).getCanonicalPath();
-            ProcessBuilder pb = new ProcessBuilder("java", "-jar", jarPath , "-p " + pattern, "-f one", "-a sum", "-d " + filePath, "-c " + confAbsolutePath);
-            Process p = pb.start();
-            p.waitFor();
-            System.out.println(String.join(" ", pb.command()));
+            Runtime rt = Runtime.getRuntime();
+            Process pro = rt.exec("java -jar " + jarPath + " -p " + pattern + " -f " + feature + " -a " + aggregator + " -d " + filePath + " -c " + confAbsolutePath);
+            pro.waitFor();
+
             long endTranslation = System.currentTimeMillis();
             return endTranslation - startTranslation;
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
         }
-
-
     }
 
     private static void writeCsv(String feature, List<String> csvLines) throws IOException{
