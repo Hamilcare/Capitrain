@@ -32,7 +32,7 @@ public class Main {
 
 	public static final String EXEMPLE = "exemple";
 
-	public static final String INPUT_FILE = CINQ_CENT_MILLION;
+	public static final String INPUT_FILE = UN_MILLION;
 
 	public static final int NB_THREAD = 1;
 
