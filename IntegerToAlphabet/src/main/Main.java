@@ -39,6 +39,7 @@ public class Main {
 	public static final boolean IS_DEBUG_ENABLE = true;
 
 	public static void main(String[] args) throws Exception {
+		System.out.println(Runtime.getRuntime().totalMemory());
 		System.out.println(String.join(" ", args));
 		ParseCliUtils.checkPrefixArgs(args);
 		String pathToDataFile = ParseCliUtils.getPathToDataFile(args);

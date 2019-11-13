@@ -11,45 +11,23 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
-    public static final String inputDirPath = "./resources/input/";
-    public static final String[] files = {
-            "pi_100",
-            "pi_1000",
-            "pi_10000",
-            "pi_100000",
-            "pi_1000000",
-            "pi_50000000"
-    };
-    public static final String[] patterns = {
-            "increasing",
-            "increasing_sequence",
-            "increasing_terrace",
-            "summit",
-            "plateau",
-            "proper_plateau",
-            "strictly_increasing_sequence",
-            "peak",
-            "inflexion",
-            "steady",
-            "steady_sequence",
-            "zigzag"
-            };
-    public static final String[] features = {
-            "one",
-            "width",
-            "surf",
-            "max",
-            "min",
-            "range"
-    };
-    public static final String[] aggregators = {
-            "max",
-            "min",
-            "sum"
-    };
-    private static String jarPath;
-    private static String jarName;
-    private static String benchDirectory;
+	public static final String inputDirPath = "./resources/input/";
+	public static final String[] files = { "10.digt", "100.digt", "1000.digt", "10000.digt", "100000.digt",
+			"1000000.digt", "5000000.digt", "10000000.digt", "50000000.digt", "100000000.digt" };
+	public static final String[] patterns = { "increasing", "increasing_sequence",
+//			"increasing_terrace", "summit",
+//			"plateau", "proper_plateau", "strictly_increasing_sequence", "peak", "inflexion", "steady",
+//			"steady_sequence", "zigzag" 
+	};
+	public static final String[] features = { "one",
+//			"width", "surf", "max", "min", "range" 
+	};
+	public static final String[] aggregators = {
+//			"max", "min", 
+			"sum" };
+	private static String jarPath;
+	private static String jarName;
+	private static String benchDirectory;
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -70,41 +48,46 @@ public class Main {
 			filesSize[i] = content.length();
 		}
 
-        //Benchmarck for each feature
-        for (int patternIndex = 0; patternIndex < patterns.length; patternIndex++) {
-            for(int featureIndex = 0; featureIndex < features.length; featureIndex++){
-                for(int aggregatorIndex = 0; aggregatorIndex < aggregators.length; aggregatorIndex++){
-                    System.out.println("COUCOU : " + String.format("%s-%s-%s", patterns[patternIndex], features[featureIndex], aggregators[aggregatorIndex]));
-                    List<String> csvLines = new ArrayList();
-                    csvLines.add("length;duration");
-                    for(int fileIndex = 0 ; fileIndex < filesSize.length ; fileIndex++){
-                        long delay = benchFile(files[fileIndex], patterns[patternIndex], features[featureIndex], aggregators[aggregatorIndex]);
-                        csvLines.add(filesSize[fileIndex] + ";" + delay);
-                    }
-                    writeCsv(String.format("%s-%s-%s", patterns[patternIndex], features[featureIndex], aggregators[aggregatorIndex]), csvLines);
-                }
+		// Benchmarck for each feature
+		for (int patternIndex = 0; patternIndex < patterns.length; patternIndex++) {
+			for (int featureIndex = 0; featureIndex < features.length; featureIndex++) {
+				for (int aggregatorIndex = 0; aggregatorIndex < aggregators.length; aggregatorIndex++) {
+					System.out.println("COUCOU : " + String.format("%s-%s-%s", patterns[patternIndex],
+							features[featureIndex], aggregators[aggregatorIndex]));
+					List<String> csvLines = new ArrayList();
+					csvLines.add("length;duration");
+					for (int fileIndex = 0; fileIndex < filesSize.length; fileIndex++) {
+						long delay = benchFile(files[fileIndex], patterns[patternIndex], features[featureIndex],
+								aggregators[aggregatorIndex]);
+						csvLines.add(filesSize[fileIndex] + ";" + delay);
+					}
+					writeCsv(String.format("%s-%s-%s", patterns[patternIndex], features[featureIndex],
+							aggregators[aggregatorIndex]), csvLines);
+				}
 
-            }
-        }
+			}
+		}
 	}
 
-    private static long benchFile(String file, String pattern, String feature, String aggregator) throws IOException, InterruptedException{
-        String confAbsolutePath = new File("./resources/config/regex.config").getCanonicalPath();
+	private static long benchFile(String file, String pattern, String feature, String aggregator)
+			throws IOException, InterruptedException {
+		String confAbsolutePath = new File("./resources/config/regex.config").getCanonicalPath();
 
-        try {
-            long startTranslation = System.currentTimeMillis();
-            String filePath = new File(inputDirPath + file).getCanonicalPath();
-            Runtime rt = Runtime.getRuntime();
-            Process pro = rt.exec("java -jar " + jarPath + " -p " + pattern + " -f " + feature + " -a " + aggregator + " -d " + filePath + " -c " + confAbsolutePath);
-            pro.waitFor();
+		try {
+			long startTranslation = System.currentTimeMillis();
+			String filePath = new File(inputDirPath + file).getCanonicalPath();
+			Runtime rt = Runtime.getRuntime();
+			Process pro = rt.exec("java -jar " + jarPath + " -p " + pattern + " -f " + feature + " -a " + aggregator
+					+ " -d " + filePath + " -c " + confAbsolutePath);
+			pro.waitFor();
 
-            long endTranslation = System.currentTimeMillis();
-            return endTranslation - startTranslation;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
+			long endTranslation = System.currentTimeMillis();
+			return endTranslation - startTranslation;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 
 	private static void writeCsv(String feature, List<String> csvLines) throws IOException {
 		FileWriter writer = new FileWriter(benchDirectory + "/" + feature + ".csv");
