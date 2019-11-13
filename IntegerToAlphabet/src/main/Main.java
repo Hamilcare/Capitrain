@@ -38,15 +38,21 @@ public class Main {
 
 	public static final boolean IS_DEBUG_ENABLE = true;
 
-	public static void main(String[] args) throws InterruptedException {
-//		Thread.sleep(20000);
-		long startTranslation = System.currentTimeMillis();
-		ITranslator translator = translateInput();
-		long endTranslation = System.currentTimeMillis();
+	public static void main(String[] args) throws Exception {
 
+		ParseCliUtils.checkPrefixArgs(args);
+		String pathToDataFile = ParseCliUtils.getPathToDataFile(args);
+
+		long startTranslation = System.currentTimeMillis();
+		ITranslator translator = translateInput(pathToDataFile);
+		long endTranslation = System.currentTimeMillis();
 		System.out.println("Traduction en " + (endTranslation - startTranslation) + " ms");
 
-		LookForRegex(translator, NB_THREAD);
+		RegexSearcher searcher = ParseCliUtils.preparePatternMatchers(args, translator);
+
+		searcher.run();
+
+//		LookForRegex(translator, NB_THREAD);
 
 	}
 
@@ -91,9 +97,9 @@ public class Main {
 	/**
 	 * @see {@link #INPUT_FILE} Lit le nombre pi et le traduit dans l'alphabet
 	 **/
-	public static ITranslator translateInput() {
+	public static ITranslator translateInput(String pathToData) {
 		try {
-			String content = new String(Files.readAllBytes(Paths.get("./resources/input/" + INPUT_FILE)));
+			String content = new String(Files.readAllBytes(Paths.get(pathToData)));
 			System.out.println("Text contains " + content.length() + " characters");
 
 			List<Integer> textToTranslate = new ArrayList<>(content.length());
