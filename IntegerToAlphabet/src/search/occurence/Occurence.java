@@ -16,23 +16,24 @@ public class Occurence implements IOccurence {
 	int sLowerBound;
 	int sUpperBound;
 
-	// i-occurrences : do not overlap (footprint of the pattern)
+	// e-occurrences : used to compute the feature value
 	int eLowerBound;
 	int eUpperBound;
 
-	// e-occurrences : used to compute the feature value
+	// i-occurrences : do not overlap (footprint of the pattern)
 	int iLowerBound;
 	int iUpperBound;
 
 	List<Integer> eSequence;
 
-	// public static IOccurence buildOccurenceFromMatch(MatchResult match, int before, int after, List<Integer> matchedInput) {
-	// 	int i = match.start();
-	// 	int j = match.end();
-	// 	return new Occurence(i, j, i + before, j + 1 - after, i + before, j);
+	// public static IOccurence buildOccurenceFromMatch(MatchResult match, int
+	// before, int after, List<Integer> matchedInput) {
+	// int i = match.start();
+	// int j = match.end();
+	// return new Occurence(i, j, i + before, j + 1 - after, i + before, j);
 	// }
 
-	public static IOccurence buildOccurenceFromMatch(List<Integer> eSequence){
+	public static IOccurence buildOccurenceFromMatch(List<Integer> eSequence) {
 		return new Occurence(eSequence);
 	}
 
@@ -47,39 +48,39 @@ public class Occurence implements IOccurence {
 		this.iUpperBound = iUpperBound;
 	}
 
-	public Occurence(List<Integer> eSequence){
+	public Occurence(List<Integer> eSequence) {
 		this.eSequence = eSequence;
 	}
 
 	// @Override
 	// public int sLowerBound() {
-	// 	return sLowerBound;
+	// return sLowerBound;
 	// }
 
 	// @Override
 	// public int sUpperBound() {
-	// 	return sUpperBound;
+	// return sUpperBound;
 	// }
 
 	// @Override
 	// public int eLowerBound() {
 
-	// 	return eLowerBound;
+	// return eLowerBound;
 	// }
 
 	// @Override
 	// public int eUpperBound() {
-	// 	return eUpperBound;
+	// return eUpperBound;
 	// }
 
 	// @Override
 	// public int iLowerBound() {
-	// 	return iLowerBound;
+	// return iLowerBound;
 	// }
 
 	// @Override
 	// public int iUpperBound() {
-	// 	return iUpperBound;
+	// return iUpperBound;
 	// }
 
 	public void setsLowerBound(int sLowerBound) {
@@ -108,12 +109,8 @@ public class Occurence implements IOccurence {
 
 	@Override
 	public List<Integer> eSequence() {
-		
+
 		return null;
 	}
-	
-	
-	
-	
-	
+
 }
