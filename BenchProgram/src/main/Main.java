@@ -14,20 +14,17 @@ public class Main {
 	public static final String inputDirPath = "./resources/input/";
 	public static final String[] files = { "10.digt", "100.digt", "1000.digt", "10000.digt", "100000.digt",
 			"1000000.digt", "5000000.digt", "10000000.digt", "50000000.digt", "100000000.digt" };
-	public static final String[] patterns = { "increasing", "increasing_sequence",
-//			"increasing_terrace", "summit",
-//			"plateau", "proper_plateau", "strictly_increasing_sequence", "peak", "inflexion", "steady",
-//			"steady_sequence", "zigzag" 
-	};
-	public static final String[] features = { "one",
-//			"width", "surf", "max", "min", "range" 
-	};
-	public static final String[] aggregators = {
-//			"max", "min", 
-			"sum" };
+	public static final String[] patterns = { "increasing", "increasing_sequence", "increasing_terrace", "summit",
+			"plateau", "proper_plateau", "strictly_increasing_sequence", "peak", "inflexion", "steady",
+			"steady_sequence", "zigzag" };
+	public static final String[] features = { "one", "width", "surf", "max", "min", "range" };
+	public static final String[] aggregators = { "max", "min", "sum" };
 	private static String jarPath;
 	private static String jarName;
 	private static String benchDirectory;
+	private static int[] filesSizes;
+
+	private static final int NB_TRY = 10;
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -41,32 +38,49 @@ public class Main {
 		benchDirectory = "./benchmarks/" + date;
 		new File(benchDirectory).mkdirs();
 
-		// Get length of each file
-		int[] filesSize = new int[files.length];
+		filesSizes = new int[files.length];
 		for (int i = 0; i < files.length; i++) {
 			String content = new String(Files.readAllBytes(Paths.get(inputDirPath + files[i])));
-			filesSize[i] = content.length();
+			filesSizes[i] = content.length();
 		}
 
-		// Benchmarck for each feature
-		for (int patternIndex = 0; patternIndex < patterns.length; patternIndex++) {
-			for (int featureIndex = 0; featureIndex < features.length; featureIndex++) {
-				for (int aggregatorIndex = 0; aggregatorIndex < aggregators.length; aggregatorIndex++) {
-					System.out.println("COUCOU : " + String.format("%s-%s-%s", patterns[patternIndex],
-							features[featureIndex], aggregators[aggregatorIndex]));
-					List<String> csvLines = new ArrayList();
-					csvLines.add("length;duration");
-					for (int fileIndex = 0; fileIndex < filesSize.length; fileIndex++) {
-						long delay = benchFile(files[fileIndex], patterns[patternIndex], features[featureIndex],
-								aggregators[aggregatorIndex]);
-						csvLines.add(filesSize[fileIndex] + ";" + delay);
+		if (args.length == 5) {
+			benchFeatureAndAggregation(args);
+		} else {
+			// Benchmarck for each feature
+			for (int patternIndex = 0; patternIndex < patterns.length; patternIndex++) {
+				for (int featureIndex = 0; featureIndex < features.length; featureIndex++) {
+					for (int aggregatorIndex = 0; aggregatorIndex < aggregators.length; aggregatorIndex++) {
+						System.out.println("COUCOU : " + String.format("%s-%s-%s", patterns[patternIndex],
+								features[featureIndex], aggregators[aggregatorIndex]));
+						List<String> csvLines = new ArrayList<>();
+						csvLines.add("length;duration");
+						for (int fileIndex = 0; fileIndex < filesSizes.length; fileIndex++) {
+							long delay = benchFile(files[fileIndex], patterns[patternIndex], features[featureIndex],
+									aggregators[aggregatorIndex]);
+							csvLines.add(filesSizes[fileIndex] + ";" + delay);
+						}
+						writeCsv(String.format("%s-%s-%s", patterns[patternIndex], features[featureIndex],
+								aggregators[aggregatorIndex]), csvLines);
 					}
-					writeCsv(String.format("%s-%s-%s", patterns[patternIndex], features[featureIndex],
-							aggregators[aggregatorIndex]), csvLines);
-				}
 
+				}
 			}
 		}
+	}
+
+	private static void benchFeatureAndAggregation(String[] args) throws IOException, InterruptedException {
+		String feature = args[2];
+		String aggregation = args[4];
+		List<String> resultats = new ArrayList<>();
+		for (String pattern : patterns) {
+			resultats.add(pattern);
+			for (int fileIndex = 0; fileIndex < filesSizes.length; fileIndex++) {
+				resultats.add(filesSizes[fileIndex] + ";" + benchFile(files[fileIndex], pattern, feature, aggregation));
+			}
+			resultats.add("\n");
+		}
+		writeCsv(String.format("%s-%s-%s", "all-patterns", feature, aggregation), resultats);
 	}
 
 	private static long benchFile(String file, String pattern, String feature, String aggregator)
@@ -75,14 +89,19 @@ public class Main {
 
 		try {
 			long startTranslation = System.currentTimeMillis();
-			String filePath = new File(inputDirPath + file).getCanonicalPath();
-			Runtime rt = Runtime.getRuntime();
-			Process pro = rt.exec("java -jar " + jarPath + " -p " + pattern + " -f " + feature + " -a " + aggregator
-					+ " -d " + filePath + " -c " + confAbsolutePath);
-			pro.waitFor();
+			for (int i = 0; i < NB_TRY; i++) {
+				String filePath = new File(inputDirPath + file).getCanonicalPath();
+				Runtime rt = Runtime.getRuntime();
+				System.out.println("java -jar " + jarPath + " -p " + pattern + " -f " + feature + " -a " + aggregator
+						+ " -d " + filePath + " -c " + confAbsolutePath);
+				Process pro = rt.exec("java -jar " + jarPath + " -p " + pattern + " -f " + feature + " -a " + aggregator
+						+ " -d " + filePath + " -c " + confAbsolutePath);
+
+				pro.waitFor();
+			}
 
 			long endTranslation = System.currentTimeMillis();
-			return endTranslation - startTranslation;
+			return (endTranslation - startTranslation) / NB_TRY;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
