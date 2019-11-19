@@ -89,9 +89,11 @@ public class RegexSearcher implements Runnable, Callable<String> {
 //		// #### Step 3 calcul de la valeur de l'aggregation
 //		featureValues.forEach(value -> aggregator.compute(value));
 
+		long startCompute = System.currentTimeMillis();
 		compute();
-
+		long endCompute = System.currentTimeMillis();
 		System.out.println("Le pattern " + name + " est présent :" + aggregator.getValue());
+		System.out.println("Recherche en " + (endCompute - startCompute) + " ms");
 	}
 
 	private Collection<IOccurence> getAllOccurences() {

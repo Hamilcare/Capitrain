@@ -39,8 +39,8 @@ public class Main {
 	public static final boolean IS_DEBUG_ENABLE = true;
 
 	public static void main(String[] args) throws Exception {
-		System.out.println(Runtime.getRuntime().totalMemory());
-		System.out.println(String.join(" ", args));
+		System.out.println("MaxMemory=" + Runtime.getRuntime().maxMemory() / 1000000 + "mo");
+		System.out.println("TotalMemory=" + Runtime.getRuntime().totalMemory() / 1000000 + "mo");
 		ParseCliUtils.checkPrefixArgs(args);
 		String pathToDataFile = ParseCliUtils.getPathToDataFile(args);
 
