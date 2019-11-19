@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import search.RegexSearcher;
 import search.aggregator.AggreEnum;
 import search.feature.FeatureEnum;
+import transducer.RegexSearcherWithTransducter;
 import translate.ITranslator;
 import translate.Translate;
 
@@ -52,6 +53,16 @@ public class Main {
 		RegexSearcher searcher = ParseCliUtils.preparePatternMatchers(args, translator);
 
 		searcher.run();
+
+
+		System.out.println("Recherche avec les automates de barbus...");
+		startTranslation = System.currentTimeMillis();
+		RegexSearcherWithTransducter regexSearcherWithTransducter = new RegexSearcherWithTransducter(translator);
+		int result = regexSearcherWithTransducter.search();
+		endTranslation = System.currentTimeMillis();
+
+		System.out.println("Résultat :  " + result);
+		System.out.println("Temps de calcul : " + (endTranslation - startTranslation));
 
 //		LookForRegex(translator, NB_THREAD);
 
