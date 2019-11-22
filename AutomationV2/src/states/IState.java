@@ -16,4 +16,6 @@ public interface IState {
 		return getTransition(nextInput).applyTransition();
 	}
 
+	void addTransition(ITransition transition);
+
 }
