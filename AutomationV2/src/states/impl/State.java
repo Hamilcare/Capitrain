@@ -1,21 +1,22 @@
-package states;
+package states.impl;
 
 import java.util.HashMap;
 
 import alphabet.Alphabet;
+import states.IState;
 import transitions.ITransition;
 
-public abstract class AbstractState implements IState {
+public class State implements IState {
 
 	String label;
 	HashMap<Alphabet, ITransition> transitions;
 
-	public AbstractState(String label, HashMap<Alphabet, ITransition> transitions) {
+	public State(String label, HashMap<Alphabet, ITransition> transitions) {
 		this.label = label;
 		this.transitions = transitions;
 	}
 
-	public AbstractState(String label) {
+	public State(String label) {
 		this.label = label;
 		this.transitions = new HashMap<>();
 	}

@@ -1,16 +1,17 @@
-package transitions;
+package transitions.impl;
 
 import alphabet.Alphabet;
 import semantic.letter.ISemanticLetter;
 import states.IState;
+import transitions.ITransition;
 
-public abstract class AbstractTransition implements ITransition {
+public class Transition implements ITransition {
 
 	Alphabet letter;
 	ISemanticLetter semantic;
 	IState target;
 
-	public AbstractTransition(Alphabet letter, ISemanticLetter semantic, IState target) {
+	public Transition(Alphabet letter, ISemanticLetter semantic, IState target) {
 		super();
 		this.letter = letter;
 		this.semantic = semantic;
@@ -19,20 +20,17 @@ public abstract class AbstractTransition implements ITransition {
 
 	@Override
 	public Alphabet getLetter() {
-		// TODO Auto-generated method stub
-		return null;
+		return letter;
 	}
 
 	@Override
 	public ISemanticLetter getSemantic() {
-		// TODO Auto-generated method stub
-		return null;
+		return semantic;
 	}
 
 	@Override
 	public IState getTarget() {
-		// TODO Auto-generated method stub
-		return null;
+		return target;
 	}
 
 }
