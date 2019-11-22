@@ -37,3 +37,4 @@ target/
 
 benchmarks/
 out/
+*.digt
