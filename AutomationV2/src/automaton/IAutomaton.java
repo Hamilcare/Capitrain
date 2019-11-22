@@ -21,13 +21,21 @@ public interface IAutomaton {
 
 	int getInputSequenceLength();
 
+	void setInputSequenceLenght(int length);
+
 	IState getCurrentState();
 
 	void setCurrentState(IState newState);
+
+	void setFeature(IFeature f);
+
+	void setAggregator(IAggregator a);
 
 	default void applyNextInput(Alphabet nextInput) {
 		IState newState = getCurrentState().applyTransition(nextInput);
 		setCurrentState(newState);
 	}
+
+	int getResult();
 
 }

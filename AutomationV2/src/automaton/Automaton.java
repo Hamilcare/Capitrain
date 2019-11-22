@@ -7,18 +7,24 @@ import states.IState;
 
 public class Automaton implements IAutomaton {
 
-	public static final IAutomaton AUTOMATON = new Automaton();
+	public static final Automaton AUTOMATON = new Automaton();
+	IFeature feature;
+	IAggregator aggregator;
+
+	IAccumulator ACCD;// = new AccumulatorD();
+	IAccumulator ACCC;// = new AccumulatorC();
+	IAccumulator ACCR;// = new AccumulatorR();
+	int inputSequenceLength;
+	IState currentState;
 
 	@Override
 	public IFeature getFeature() {
-		// TODO Auto-generated method stub
-		return null;
+		return feature;
 	}
 
 	@Override
 	public IAggregator getAggregator() {
-		// TODO Auto-generated method stub
-		return null;
+		return aggregator;
 	}
 
 	@Override
@@ -29,38 +35,57 @@ public class Automaton implements IAutomaton {
 
 	@Override
 	public IAccumulator getAccumulatorD() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return ACCD;
 	}
 
 	@Override
 	public IAccumulator getAccumulatorC() {
-		// TODO Auto-generated method stub
-		return null;
+		return ACCC;
 	}
 
 	@Override
 	public IAccumulator getAccumulatorR() {
-		// TODO Auto-generated method stub
-		return null;
+		return ACCR;
 	}
 
 	@Override
 	public int getInputSequenceLength() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return inputSequenceLength;
 	}
 
 	@Override
 	public IState getCurrentState() {
-		// TODO Auto-generated method stub
-		return null;
+		return currentState;
 	}
 
 	@Override
 	public void setCurrentState(IState newState) {
-		// TODO Auto-generated method stub
 
+		AUTOMATON.currentState = newState;
+//		System.out.print(AUTOMATON.currentState.getLabel());
+
+	}
+
+	@Override
+	public void setInputSequenceLenght(int lenght) {
+		AUTOMATON.inputSequenceLength = lenght;
+	}
+
+	@Override
+	public void setFeature(IFeature f) {
+		AUTOMATON.feature = f;
+	}
+
+	@Override
+	public void setAggregator(IAggregator a) {
+		AUTOMATON.aggregator = a;
+	}
+
+	@Override
+	public int getResult() {
+		return AUTOMATON.aggregator.apply(AUTOMATON.ACCR.getCurrentValue(), AUTOMATON.ACCC.getCurrentValue());
 	}
 
 }

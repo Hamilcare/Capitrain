@@ -1,13 +1,12 @@
 package aggregators.impl;
 
 import aggregators.AbstractAggregator;
-import automaton.IAutomaton;
 import features.IFeature;
 
 public final class Min extends AbstractAggregator {
 
-	public Min(IAutomaton automaton, IFeature feature) {
-		super(automaton, feature);
+	public Min() {
+
 	}
 
 	@Override

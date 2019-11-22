@@ -1,13 +1,12 @@
 package features;
 
+import automaton.Automaton;
 import automaton.IAutomaton;
 
 public abstract class AbstractFeature implements IFeature {
 
-	IAutomaton automaton;
-
 	@Override
 	public IAutomaton getAutomaton() {
-		return automaton;
+		return Automaton.AUTOMATON;
 	}
 }

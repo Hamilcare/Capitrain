@@ -1,5 +1,6 @@
 package accumulators;
 
+import automaton.Automaton;
 import automaton.IAutomaton;
 
 public abstract class AbstractAccumulator implements IAccumulator {
@@ -11,10 +12,11 @@ public abstract class AbstractAccumulator implements IAccumulator {
 
 	static final int UNSET_POSITION = -1;
 
-	public AbstractAccumulator(IAutomaton automaton) {
-		this.automaton = automaton;
+	public AbstractAccumulator() {
+		this.automaton = Automaton.AUTOMATON;
 		startXi = UNSET_POSITION;
 		endXi = UNSET_POSITION;
+		this.setToInitValue();
 	}
 
 	public IAutomaton getAutomaton() {

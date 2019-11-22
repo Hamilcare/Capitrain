@@ -5,7 +5,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import accumulators.AccumulatorC;
+import accumulators.AccumulatorD;
+import accumulators.AccumulatorR;
+import aggregators.IAggregator;
 import alphabet.Alphabet;
+import features.IFeature;
 import semantic.letter.impl.SemanticLetterFactory;
 import states.StateFactory;
 import transitions.ITransition;
@@ -16,12 +21,14 @@ public class AutomatonBuilder {
 	String pathToFile;
 	final String separator = ",";
 
-	public AutomatonBuilder(String pathToFile) {
+	public AutomatonBuilder(String pathToFile, IFeature feature, IAggregator aggregator) {
 		super();
+		Automaton.AUTOMATON.setFeature(feature);
+		Automaton.AUTOMATON.setAggregator(aggregator);
 		this.pathToFile = pathToFile;
 	}
 
-	void buildAutomaton() throws IOException {
+	public void build() throws IOException {
 		List<String> fileContent = Files.readAllLines(Paths.get(pathToFile));
 		String[] states = fileContent.get(0).split(separator);
 
@@ -42,6 +49,10 @@ public class AutomatonBuilder {
 		}
 
 		Automaton.AUTOMATON.setCurrentState(StateFactory.getStateFromLabel(startLabel));
+
+		Automaton.AUTOMATON.ACCC = new AccumulatorC();
+		Automaton.AUTOMATON.ACCD = new AccumulatorD();
+		Automaton.AUTOMATON.ACCR = new AccumulatorR();
 
 	}
 

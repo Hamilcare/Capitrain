@@ -4,6 +4,10 @@ import features.AbstractFeature;
 
 public class Width extends AbstractFeature {
 
+	public Width() {
+
+	}
+
 	@Override
 	public String getName() {
 		return "WIDTH";
