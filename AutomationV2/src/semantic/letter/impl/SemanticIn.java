@@ -21,6 +21,7 @@ public class SemanticIn extends AbstractSemanticLetter {
 
 		int newValue = getAutomaton().getFeature().apply(getAutomaton().getAccumulatorC().getCurrentValue(), tmpRight);
 		getAutomaton().getAccumulatorC().updateValue(newValue);
+
 	}
 
 	@Override

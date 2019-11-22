@@ -17,26 +17,17 @@ public final class Min extends AbstractAggregator {
 
 	@Override
 	public IFeature getFeature() {
-		// TODO Auto-generated method stub
-		return null;
+		return getAutomaton().getFeature();
 	}
 
 	@Override
 	public int getDefault() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getFeature().getMax();
 	}
 
 	@Override
 	public int apply(int a, int b) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public IAutomaton getAutomaton() {
-		// TODO Auto-generated method stub
-		return null;
+		return Math.min(a, b);
 	}
 
 }

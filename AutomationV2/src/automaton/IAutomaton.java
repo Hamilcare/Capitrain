@@ -2,7 +2,9 @@ package automaton;
 
 import accumulators.IAccumulator;
 import aggregators.IAggregator;
+import alphabet.Alphabet;
 import features.IFeature;
+import states.IState;
 
 public interface IAutomaton {
 	IFeature getFeature();
@@ -18,5 +20,14 @@ public interface IAutomaton {
 	IAccumulator getAccumulatorR();
 
 	int getInputSequenceLength();
+
+	IState getCurrentState();
+
+	void setCurrentState(IState newState);
+
+	default void applyNextInput(Alphabet nextInput) {
+		IState newState = getCurrentState().applyTransition(nextInput);
+		setCurrentState(newState);
+	}
 
 }

@@ -14,4 +14,9 @@ public abstract class AbstractAggregator implements IAggregator {
 		this.feature = feature;
 	}
 
+	@Override
+	public IAutomaton getAutomaton() {
+		return automaton;
+	}
+
 }
