@@ -1,0 +1,10 @@
+R,S,T
+>,out,S,S
+=,out,S,S
+<,out,S,R
+<,maybeb,R,R
+=,maybeb,R,R
+>,found,R,T
+>,in,T,T
+=,maybea,T,T
+<,outa,T,R
