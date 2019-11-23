@@ -2,6 +2,7 @@ package features.impl;
 
 import automaton.Automaton;
 import features.AbstractFeature;
+import main.Main;
 
 public class Min extends AbstractFeature {
     @Override
@@ -31,6 +32,6 @@ public class Min extends AbstractFeature {
 
     @Override
     public int getValue() {
-        return Automaton.AUTOMATON.getCurrentXiPosition();
+        return Main.translator.getTextToTranslate().get(Automaton.AUTOMATON.getCurrentXiPosition());
     }
 }

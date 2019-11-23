@@ -7,31 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import aggregators.impl.Sum;
+import aggregators.impl.Min;
 import alphabet.Alphabet;
 import automaton.Automaton;
 import automaton.AutomatonBuilder;
-import features.impl.Width;
+import features.impl.Max;
 import translation.ITranslator;
 import translation.Translate;
 
 public class Main {
 
-	static String path = "./AutomationV2/input/peak.csv";
+	static String path = "./input/peak.csv";
 
-	static String input = "./BenchProgram/resources/input/1000000000.digt";
+//	static String input = "./BenchProgram/resources/input/1000000000.digt";
 //	static String input = "input/exemple";
-//	static String input = "input/exemple2";
-
+	static String input = "input/exemple2";
+	public static ITranslator translator;
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException {
 
 		long startTranslation = System.currentTimeMillis();
-		ITranslator translator = translateInput(input);
+		translator = translateInput(input);
 		Automaton.AUTOMATON.setInputSequenceLenght(translator.getTextToTranslate().size());
 
-		AutomatonBuilder builder = new AutomatonBuilder(path, new Width(), new Sum());
+		AutomatonBuilder builder = new AutomatonBuilder(path, new Max(), new Min());
 		builder.build();
 
 //		System.out.println(translator.getTranslatedText());
