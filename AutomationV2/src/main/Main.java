@@ -5,13 +5,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-import aggregators.impl.Sum;
+import aggregators.impl.Max;
 import alphabet.Alphabet;
 import automaton.Automaton;
 import automaton.AutomatonBuilder;
-import features.impl.Max;
-import features.impl.One;
+import features.impl.Width;
 import translation.ITranslator;
 import translation.Translate;
 
@@ -19,7 +19,10 @@ public class Main {
 
 	static String path = "./input/peak.csv";
 
-	static String input = "./input/exemple";
+	static String input = "input/100000000.digt";
+//	static String input = "input/exemple";
+
+	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException {
 
@@ -27,7 +30,7 @@ public class Main {
 		ITranslator translator = translateInput(input);
 		Automaton.AUTOMATON.setInputSequenceLenght(translator.getTextToTranslate().size());
 
-		AutomatonBuilder builder = new AutomatonBuilder(path, new Max(), new Sum());
+		AutomatonBuilder builder = new AutomatonBuilder(path, new Width(), new Max());
 		builder.build();
 
 //		System.out.println(translator.getTranslatedText());
@@ -35,6 +38,11 @@ public class Main {
 		long endTransaltion = System.currentTimeMillis();
 
 		System.out.println("Translation time : " + (endTransaltion - startTranslation));
+
+		System.out.println("Waiting input before computation");
+		sc.nextLine();
+
+		long startComputation = System.currentTimeMillis();
 
 		for (int i = 0; i < translator.getTranslatedText().length(); i++) {
 			Automaton.AUTOMATON.applyNextInput(Alphabet.asEnum("" + translator.getTranslatedText().charAt(i)));
