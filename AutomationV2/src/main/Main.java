@@ -10,27 +10,31 @@ import aggregators.impl.Sum;
 import alphabet.Alphabet;
 import automaton.Automaton;
 import automaton.AutomatonBuilder;
+import features.impl.Max;
 import features.impl.One;
 import translation.ITranslator;
 import translation.Translate;
 
 public class Main {
 
-	static String path = "input/peak.csv";
+	static String path = "./input/peak.csv";
 
-	static String input = "input/pi100000digit";
+	static String input = "./input/exemple";
 
 	public static void main(String[] args) throws IOException {
 
+		long startTranslation = System.currentTimeMillis();
 		ITranslator translator = translateInput(input);
 		Automaton.AUTOMATON.setInputSequenceLenght(translator.getTextToTranslate().size());
 
-		AutomatonBuilder builder = new AutomatonBuilder(path, new One(), new Sum());
+		AutomatonBuilder builder = new AutomatonBuilder(path, new Max(), new Sum());
 		builder.build();
 
 //		System.out.println(translator.getTranslatedText());
 
 		long endTransaltion = System.currentTimeMillis();
+
+		System.out.println("Translation time : " + (endTransaltion - startTranslation));
 
 		for (int i = 0; i < translator.getTranslatedText().length(); i++) {
 			Automaton.AUTOMATON.applyNextInput(Alphabet.asEnum("" + translator.getTranslatedText().charAt(i)));
@@ -40,7 +44,8 @@ public class Main {
 
 		System.out.println(Automaton.AUTOMATON.getResult());
 
-		System.out.println("Time : " + (endComputation - endTransaltion));
+		System.out.println("Automaton Time : " + (endComputation - endTransaltion));
+		System.out.println("Total Time : " + (endComputation - startTranslation));
 	}
 
 	public static ITranslator translateInput(String pathToData) {

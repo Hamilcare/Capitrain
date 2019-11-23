@@ -16,6 +16,7 @@ public class Automaton implements IAutomaton {
 	IAccumulator ACCR;// = new AccumulatorR();
 	int inputSequenceLength;
 	IState currentState;
+	int currentXiPosition = 0;
 
 	@Override
 	public IFeature getFeature() {
@@ -29,8 +30,7 @@ public class Automaton implements IAutomaton {
 
 	@Override
 	public int getCurrentXiPosition() {
-		// TODO Auto-generated method stub
-		return 0;
+		return AUTOMATON.currentXiPosition;
 	}
 
 	@Override
@@ -64,6 +64,7 @@ public class Automaton implements IAutomaton {
 	public void setCurrentState(IState newState) {
 
 		AUTOMATON.currentState = newState;
+		AUTOMATON.currentXiPosition++;
 //		System.out.print(AUTOMATON.currentState.getLabel());
 
 	}
