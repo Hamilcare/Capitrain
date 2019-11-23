@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import aggregators.impl.Max;
+import aggregators.impl.Min;
+import aggregators.impl.Sum;
 import alphabet.Alphabet;
 import automaton.Automaton;
 import automaton.AutomatonBuilder;
+import features.impl.Max;
 import features.impl.Width;
 import translation.ITranslator;
 import translation.Translate;
@@ -19,8 +21,9 @@ public class Main {
 
 	static String path = "./input/peak.csv";
 
-	static String input = "input/100000000.digt";
+	static String input = "../BenchProgram/resources/input/10000000.digt";
 //	static String input = "input/exemple";
+//	static String input = "input/exemple2";
 
 	static Scanner sc = new Scanner(System.in);
 
@@ -30,7 +33,7 @@ public class Main {
 		ITranslator translator = translateInput(input);
 		Automaton.AUTOMATON.setInputSequenceLenght(translator.getTextToTranslate().size());
 
-		AutomatonBuilder builder = new AutomatonBuilder(path, new Width(), new Max());
+		AutomatonBuilder builder = new AutomatonBuilder(path, new Width(), new Sum());
 		builder.build();
 
 //		System.out.println(translator.getTranslatedText());

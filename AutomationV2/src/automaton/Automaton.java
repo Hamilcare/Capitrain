@@ -51,7 +51,6 @@ public class Automaton implements IAutomaton {
 
 	@Override
 	public int getInputSequenceLength() {
-
 		return inputSequenceLength;
 	}
 
@@ -62,7 +61,6 @@ public class Automaton implements IAutomaton {
 
 	@Override
 	public void setCurrentState(IState newState) {
-
 		AUTOMATON.currentState = newState;
 		AUTOMATON.currentXiPosition++;
 //		System.out.print(AUTOMATON.currentState.getLabel());
