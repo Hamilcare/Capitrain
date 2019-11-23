@@ -36,13 +36,13 @@ public class Main {
 
 		long endTransaltion = System.currentTimeMillis();
 
-		System.out.println("Waiting input before computation");
-		sc.nextLine();
+//		System.out.println("Waiting input before computation");
+//		sc.nextLine();
 
 		long startComputation = System.currentTimeMillis();
 
 		for (int i = 0; i < translator.getTranslatedText().length(); i++) {
-			Automaton.AUTOMATON.applyNextInput(Alphabet.asEnum("" + translator.getTranslatedText().charAt(i)));
+			Automaton.AUTOMATON.applyNextInput(Alphabet.asEnum(translator.getTranslatedText().charAt(i)));
 		}
 
 		long endComputation = System.currentTimeMillis();
