@@ -22,6 +22,19 @@ public enum Alphabet {
 		}
 	}
 
+	public static Alphabet asEnum(char s) {
+		switch (s) {
+		case '<':
+			return MORE;
+		case '>':
+			return LESS;
+		case '=':
+			return EQUALS;
+		default:
+			return UNKOWN;
+		}
+	}
+
 	Alphabet(String s) {
 		asString = s;
 	}

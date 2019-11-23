@@ -7,21 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import aggregators.impl.Min;
 import aggregators.impl.Sum;
 import alphabet.Alphabet;
 import automaton.Automaton;
 import automaton.AutomatonBuilder;
-import features.impl.Max;
 import features.impl.Width;
 import translation.ITranslator;
 import translation.Translate;
 
 public class Main {
 
-	static String path = "./input/peak.csv";
+	static String path = "./AutomationV2/input/peak.csv";
 
-	static String input = "../BenchProgram/resources/input/10000000.digt";
+	static String input = "./BenchProgram/resources/input/1000000000.digt";
 //	static String input = "input/exemple";
 //	static String input = "input/exemple2";
 
@@ -42,13 +40,13 @@ public class Main {
 
 		System.out.println("Translation time : " + (endTransaltion - startTranslation));
 
-		System.out.println("Waiting input before computation");
-		sc.nextLine();
+//		System.out.println("Waiting input before computation");
+//		sc.nextLine();
 
 		long startComputation = System.currentTimeMillis();
 
 		for (int i = 0; i < translator.getTranslatedText().length(); i++) {
-			Automaton.AUTOMATON.applyNextInput(Alphabet.asEnum("" + translator.getTranslatedText().charAt(i)));
+			Automaton.AUTOMATON.applyNextInput(Alphabet.asEnum(translator.getTranslatedText().charAt(i)));
 		}
 
 		long endComputation = System.currentTimeMillis();
