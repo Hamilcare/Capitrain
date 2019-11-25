@@ -16,10 +16,10 @@ public class CliParser {
 
     private String[] args;
 
-    private String patternFile;
+    private String patternFilePath;
     private IFeature feature;
     private IAggregator aggregator;
-    private String dataFile;
+    private String dataFilePath;
 
     public CliParser(String[] args){
         this.args = args;
@@ -37,8 +37,8 @@ public class CliParser {
 
 
     private void parsePatternFile() throws CliParserException {
-        this.patternFile = args[POS_PATTERN_FILE];
-        File f = new File(this.patternFile);
+        this.patternFilePath = args[POS_PATTERN_FILE];
+        File f = new File(this.patternFilePath);
         if(!f.exists() || f.isDirectory()){
             throw new CliParserException("Pattern file " + args[POS_PATTERN_FILE] + " is not valid");
         }
@@ -63,15 +63,15 @@ public class CliParser {
     }
 
     private void parseDataFile() throws CliParserException {
-        this.dataFile = args[POS_DATA_FILE];
-        File f = new File(this.dataFile);
+        this.dataFilePath = args[POS_DATA_FILE];
+        File f = new File(this.dataFilePath);
         if(!f.exists() || f.isDirectory()){
             throw new CliParserException("Data file " + args[POS_DATA_FILE] + " is not valid");
         }
     }
 
-    public String getPatternFile(){
-        return this.patternFile;
+    public String getPatternFilePath(){
+        return this.patternFilePath;
     }
     public IFeature getFeature(){
         return this.feature;
@@ -79,7 +79,7 @@ public class CliParser {
     public IAggregator getAggregator(){
         return this.aggregator;
     }
-    public String getDataFile(){
-        return this.dataFile;
+    public String getDataFilePath(){
+        return this.dataFilePath;
     }
 }
