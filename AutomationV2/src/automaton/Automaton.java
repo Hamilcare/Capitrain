@@ -18,7 +18,7 @@ public class Automaton implements IAutomaton {
 	IAccumulator ACCR;// = new AccumulatorR();
 	int inputSequenceLength;
 	IState currentState;
-	int currentXiPosition = -1;
+	int currentXiPosition = 0;
 
 	int meilleurStart = UNDEFINEDGuard;
 	int meilleurEnd = UNDEFINEDGuard;
