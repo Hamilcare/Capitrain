@@ -11,4 +11,12 @@ public interface IAccumulator {
 
 	void updateValue(int newValue);
 
+	void setStartXi(int position);
+
+	void setEndXi(int position);
+
+	int getStartXi();
+
+	int getEndXi();
+
 }

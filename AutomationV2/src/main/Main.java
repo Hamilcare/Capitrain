@@ -31,8 +31,6 @@ public class Main {
 		AutomatonBuilder builder = new AutomatonBuilder(cliParser.getPatternFilePath(), cliParser.getFeature(), cliParser.getAggregator());
 		builder.build();
 
-//		System.out.println(translator.getTranslatedText());
-
 		long endTransaltion = System.currentTimeMillis();
 
 		System.out.println("Translation time : " + (endTransaltion - startTranslation));
@@ -50,7 +48,7 @@ public class Main {
 
 		System.out.println(Automaton.AUTOMATON.getResult());
 
-		System.out.println("Automaton Time : " + (endComputation - endTransaltion));
+		System.out.println("Automaton Time : " + (endComputation - startComputation));
 		System.out.println("Total Time : " + (endComputation - startTranslation));
 	}
 

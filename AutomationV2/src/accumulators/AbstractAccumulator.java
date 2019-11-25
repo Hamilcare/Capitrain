@@ -39,4 +39,24 @@ public abstract class AbstractAccumulator implements IAccumulator {
 		currentValue = newValue;
 	}
 
+	@Override
+	public void setStartXi(int position) {
+		this.startXi = position;
+	}
+
+	@Override
+	public void setEndXi(int position) {
+		this.endXi = position;
+	}
+
+	@Override
+	public int getStartXi() {
+		return startXi;
+	}
+
+	@Override
+	public int getEndXi() {
+		return endXi;
+	}
+
 }

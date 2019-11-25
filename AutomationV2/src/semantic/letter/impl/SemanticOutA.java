@@ -14,6 +14,11 @@ public class SemanticOutA extends AbstractSemanticLetter {
 		int newValue = getAutomaton().getAggregator().apply(getAutomaton().getAccumulatorR().getCurrentValue(),
 				getAutomaton().getAccumulatorC().getCurrentValue());
 
+		if (newValue != getAutomaton().getAccumulatorR().getCurrentValue()) {
+			getAutomaton().getAccumulatorR().setStartXi(getAutomaton().getAccumulatorC().getStartXi());
+			getAutomaton().getAccumulatorR().setEndXi(getAutomaton().getAccumulatorC().getEndXi());
+		}
+
 		getAutomaton().getAccumulatorR().updateValue(newValue);
 	}
 
