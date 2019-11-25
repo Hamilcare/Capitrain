@@ -25,6 +25,9 @@ public class Main {
 		long startTranslation = System.currentTimeMillis();
 		CliParser cliParser = new CliParser(args);
 		cliParser.parse();
+
+		System.out.println(String.format("Starting with: %s %s %s", cliParser.getAggregatorName(), cliParser.getFeatureName(), cliParser.getPatternFilePath()));
+		System.out.println(String.format("Data file: %s", cliParser.getDataFilePath()));
 		translator = translateInput(cliParser.getDataFilePath());
 		Automaton.AUTOMATON.setInputSequenceLenght(translator.getTextToTranslate().size());
 

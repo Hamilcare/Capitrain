@@ -76,9 +76,11 @@ public class CliParser {
     public IFeature getFeature(){
         return this.feature;
     }
+    public String getFeatureName() { return this.args[POS_FEATURE]; }
     public IAggregator getAggregator(){
         return this.aggregator;
     }
+    public String getAggregatorName(){ return this.args[POS_AGGREGATOR]; }
     public String getDataFilePath(){
         return this.dataFilePath;
     }
