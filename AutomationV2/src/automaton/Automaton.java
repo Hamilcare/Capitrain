@@ -71,8 +71,6 @@ public class Automaton implements IAutomaton {
 	public void setCurrentState(IState newState) {
 		AUTOMATON.currentState = newState;
 		AUTOMATON.currentXiPosition++;
-//		System.out.print(AUTOMATON.currentState.getLabel());
-
 	}
 
 	@Override

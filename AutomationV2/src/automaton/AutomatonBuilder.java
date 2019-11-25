@@ -18,17 +18,13 @@ import transitions.impl.Transition;
 
 public class AutomatonBuilder {
 
-	String pathToFile;
-	final String separator = ",";
 
-	public AutomatonBuilder(String pathToFile, IFeature feature, IAggregator aggregator) {
-		super();
+	private final static String separator = ",";
+
+	public static IAutomaton buildNewAutomaton(String pathToFile, IFeature feature, IAggregator aggregator) throws IOException{
 		Automaton.AUTOMATON.setFeature(feature);
 		Automaton.AUTOMATON.setAggregator(aggregator);
-		this.pathToFile = pathToFile;
-	}
 
-	public void build() throws IOException {
 		List<String> fileContent = Files.readAllLines(Paths.get(pathToFile));
 		String[] states = fileContent.get(0).split(separator);
 
@@ -54,6 +50,6 @@ public class AutomatonBuilder {
 		Automaton.AUTOMATON.ACCD = new AccumulatorD();
 		Automaton.AUTOMATON.ACCR = new AccumulatorR();
 
+		return Automaton.AUTOMATON;
 	}
-
 }

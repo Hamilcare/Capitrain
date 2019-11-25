@@ -10,6 +10,8 @@ import java.util.Scanner;
 import alphabet.Alphabet;
 import automaton.Automaton;
 import automaton.AutomatonBuilder;
+import automaton.AutomatonRunner;
+import automaton.IAutomaton;
 import translation.ITranslator;
 import translation.Translate;
 import utils.CliParser;
@@ -29,27 +31,19 @@ public class Main {
 		System.out.println(String.format("Starting with: %s %s %s", cliParser.getAggregatorName(), cliParser.getFeatureName(), cliParser.getPatternFilePath()));
 		System.out.println(String.format("Data file: %s", cliParser.getDataFilePath()));
 		translator = translateInput(cliParser.getDataFilePath());
-		Automaton.AUTOMATON.setInputSequenceLenght(translator.getTextToTranslate().size());
-
-		AutomatonBuilder builder = new AutomatonBuilder(cliParser.getPatternFilePath(), cliParser.getFeature(), cliParser.getAggregator());
-		builder.build();
-
 		long endTransaltion = System.currentTimeMillis();
-
 		System.out.println("Translation time : " + (endTransaltion - startTranslation));
-
-//		System.out.println("Waiting input before computation");
-//		sc.nextLine();
 
 		long startComputation = System.currentTimeMillis();
 
-		for (int i = 0; i < translator.getTranslatedText().length(); i++) {
-			Automaton.AUTOMATON.applyNextInput(Alphabet.asEnum(translator.getTranslatedText().charAt(i)));
-		}
+		IAutomaton automaton = AutomatonBuilder.buildNewAutomaton(cliParser.getPatternFilePath(), cliParser.getFeature(), cliParser.getAggregator());
+		AutomatonRunner automatonRunner = new AutomatonRunner(automaton);
+		AutomatonRunner.Result result = automatonRunner.run(translator);
+
 
 		long endComputation = System.currentTimeMillis();
 
-		System.out.println(Automaton.AUTOMATON.getResult());
+		System.out.println("Result: " + result.getValue());
 
 		System.out.println("Automaton Time : " + (endComputation - startComputation));
 		System.out.println("Total Time : " + (endComputation - startTranslation));
