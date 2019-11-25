@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import aggregators.impl.Min;
 import alphabet.Alphabet;
 import automaton.Automaton;
 import automaton.AutomatonBuilder;
-import features.impl.Max;
 import translation.ITranslator;
 import translation.Translate;
 import utils.CliParser;
@@ -30,10 +28,9 @@ public class Main {
 		translator = translateInput(cliParser.getDataFile());
 		Automaton.AUTOMATON.setInputSequenceLenght(translator.getTextToTranslate().size());
 
-		AutomatonBuilder builder = new AutomatonBuilder(cliParser.getPatternFile(), cliParser.getFeature(), cliParser.getAggregator());
+		AutomatonBuilder builder = new AutomatonBuilder(cliParser.getPatternFile(), cliParser.getFeature(),
+				cliParser.getAggregator());
 		builder.build();
-
-//		System.out.println(translator.getTranslatedText());
 
 		long endTransaltion = System.currentTimeMillis();
 
@@ -52,7 +49,7 @@ public class Main {
 
 		System.out.println(Automaton.AUTOMATON.getResult());
 
-		System.out.println("Automaton Time : " + (endComputation - endTransaltion));
+		System.out.println("Automaton Time : " + (endComputation - startComputation));
 		System.out.println("Total Time : " + (endComputation - startTranslation));
 	}
 

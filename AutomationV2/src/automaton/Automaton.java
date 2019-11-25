@@ -8,6 +8,8 @@ import states.IState;
 public class Automaton implements IAutomaton {
 
 	public static final Automaton AUTOMATON = new Automaton();
+	public static final int UNDEFINEDGuard = -1;
+
 	IFeature feature;
 	IAggregator aggregator;
 
@@ -16,7 +18,13 @@ public class Automaton implements IAutomaton {
 	IAccumulator ACCR;// = new AccumulatorR();
 	int inputSequenceLength;
 	IState currentState;
-	int currentXiPosition = 0;
+	int currentXiPosition = -1;
+
+	int meilleurStart = UNDEFINEDGuard;
+	int meilleurEnd = UNDEFINEDGuard;
+
+	int bufferMeilleurStart = UNDEFINEDGuard;
+	int bufferMeilleurEnd = UNDEFINEDGuard;
 
 	@Override
 	public IFeature getFeature() {
@@ -84,6 +92,20 @@ public class Automaton implements IAutomaton {
 
 	@Override
 	public int getResult() {
+		int start;
+		int end;
+
+		int result = AUTOMATON.aggregator.apply(AUTOMATON.ACCR.getCurrentValue(), AUTOMATON.ACCC.getCurrentValue());
+		if (result == AUTOMATON.ACCR.getCurrentValue()) {
+			start = AUTOMATON.ACCR.getStartXi();
+			end = AUTOMATON.ACCR.getEndXi();
+		} else {
+			start = AUTOMATON.ACCC.getStartXi();
+			end = AUTOMATON.ACCC.getEndXi();
+		}
+
+		System.out.println("start: " + start + ", end: " + end);
+
 		return AUTOMATON.aggregator.apply(AUTOMATON.ACCR.getCurrentValue(), AUTOMATON.ACCC.getCurrentValue());
 	}
 
