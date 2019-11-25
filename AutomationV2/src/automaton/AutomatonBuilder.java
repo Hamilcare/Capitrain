@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 import accumulators.AccumulatorC;
 import accumulators.AccumulatorD;
@@ -21,10 +22,11 @@ public class AutomatonBuilder {
 	String pathToFile;
 	final String separator = ",";
 
-	public AutomatonBuilder(String pathToFile, IFeature feature, IAggregator aggregator) {
+	public AutomatonBuilder(String pathToFile, IFeature feature, IAggregator aggregator, BlockingQueue<Alphabet> bq) {
 		super();
 		Automaton.AUTOMATON.setFeature(feature);
 		Automaton.AUTOMATON.setAggregator(aggregator);
+		Automaton.AUTOMATON.setQueue(bq);
 		this.pathToFile = pathToFile;
 	}
 

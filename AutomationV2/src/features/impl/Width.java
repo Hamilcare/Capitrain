@@ -24,7 +24,7 @@ public class Width extends AbstractFeature {
 
 	@Override
 	public int getMax() {
-		return getAutomaton().getInputSequenceLength();
+		return Integer.MAX_VALUE;
 	}
 
 	@Override

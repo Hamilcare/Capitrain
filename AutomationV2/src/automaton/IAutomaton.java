@@ -1,12 +1,14 @@
 package automaton;
 
+import java.util.concurrent.BlockingQueue;
+
 import accumulators.IAccumulator;
 import aggregators.IAggregator;
 import alphabet.Alphabet;
 import features.IFeature;
 import states.IState;
 
-public interface IAutomaton {
+public interface IAutomaton extends Runnable {
 	IFeature getFeature();
 
 	IAggregator getAggregator();
@@ -19,10 +21,6 @@ public interface IAutomaton {
 
 	IAccumulator getAccumulatorR();
 
-	int getInputSequenceLength();
-
-	void setInputSequenceLenght(int length);
-
 	IState getCurrentState();
 
 	void setCurrentState(IState newState);
@@ -30,6 +28,8 @@ public interface IAutomaton {
 	void setFeature(IFeature f);
 
 	void setAggregator(IAggregator a);
+
+	void setQueue(BlockingQueue<Alphabet> q);
 
 	default void applyNextInput(Alphabet nextInput) {
 		IState newState = getCurrentState().applyTransition(nextInput);
