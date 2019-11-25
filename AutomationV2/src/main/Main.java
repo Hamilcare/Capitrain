@@ -14,24 +14,23 @@ import automaton.AutomatonBuilder;
 import features.impl.Max;
 import translation.ITranslator;
 import translation.Translate;
+import utils.CliParser;
+import utils.CliParserException;
 
 public class Main {
 
-	static String path = "./input/peak.csv";
-
-//	static String input = "./BenchProgram/resources/input/1000000000.digt";
-//	static String input = "input/exemple";
-	static String input = "input/exemple2";
 	public static ITranslator translator;
 	static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, CliParserException {
 
 		long startTranslation = System.currentTimeMillis();
-		translator = translateInput(input);
+		CliParser cliParser = new CliParser(args);
+		cliParser.parse();
+		translator = translateInput(cliParser.getDataFile());
 		Automaton.AUTOMATON.setInputSequenceLenght(translator.getTextToTranslate().size());
 
-		AutomatonBuilder builder = new AutomatonBuilder(path, new Max(), new Min());
+		AutomatonBuilder builder = new AutomatonBuilder(cliParser.getPatternFile(), cliParser.getFeature(), cliParser.getAggregator());
 		builder.build();
 
 //		System.out.println(translator.getTranslatedText());
