@@ -2,17 +2,17 @@ package features.impl;
 
 import automaton.Automaton;
 import features.AbstractFeature;
-import main.Main;
+import application.Main;
 
-public class Max extends AbstractFeature {
+public class Surface extends AbstractFeature {
     @Override
     public String getName() {
-        return "MAX";
+        return "SURFACE";
     }
 
     @Override
     public int getNeutral() {
-        return Integer.MIN_VALUE;
+        return 0;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class Max extends AbstractFeature {
 
     @Override
     public int apply(int a, int b) {
-        return Math.max(a, b);
+        return a+b;
     }
 
     @Override

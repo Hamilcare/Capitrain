@@ -2,7 +2,7 @@ package features.impl;
 
 import automaton.Automaton;
 import features.AbstractFeature;
-import main.Main;
+import application.Main;
 
 public class Range extends AbstractFeature {
     @Override

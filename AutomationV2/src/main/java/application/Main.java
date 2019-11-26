@@ -1,4 +1,4 @@
-package main;
+package application;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import alphabet.Alphabet;
-import automaton.Automaton;
 import automaton.AutomatonBuilder;
 import automaton.AutomatonRunner;
 import automaton.IAutomaton;
