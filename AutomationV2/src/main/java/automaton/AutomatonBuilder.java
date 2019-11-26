@@ -36,7 +36,10 @@ public class AutomatonBuilder {
 		automaton.setInputSequenceLenght(translator.getInputSequenceLength());
 
 		List<String> fileContent = Files.readAllLines(Paths.get(pathToFile));
-		String[] states = fileContent.get(0).split(separator);
+		String[] beforeAfter = fileContent.get(0).split(separator);
+		int before = Integer.parseInt(beforeAfter[0]);
+		int after = Integer.parseInt(beforeAfter[1]);
+		String[] states = fileContent.get(1).split(separator);
 
 		String startLabel = states[0];
 
@@ -44,11 +47,11 @@ public class AutomatonBuilder {
 			StateFactory.builStateWithLabler(stateLabel);
 		}
 
-		for (int i = 1; i < fileContent.size(); i++) {
+		for (int i = 2; i < fileContent.size(); i++) {
 			String[] transitionParams = fileContent.get(i).split(separator);
 
 			ITransition newTransition = new Transition(Alphabet.asEnum(transitionParams[0]),
-					SemanticLetterFactory.getSemantic(transitionParams[1], automaton),
+					SemanticLetterFactory.getSemantic(transitionParams[1], automaton, after),
 					StateFactory.getStateFromLabel(transitionParams[3]));
 
 			StateFactory.getStateFromLabel(transitionParams[2]).addTransition(newTransition);
@@ -58,6 +61,8 @@ public class AutomatonBuilder {
 
 		automaton.setAccumulators(new AccumulatorD(automaton), new AccumulatorC(automaton),
 				new AccumulatorR(automaton));
+
+		automaton.setBeforeAfter(before, after);
 
 		return automaton;
 	}

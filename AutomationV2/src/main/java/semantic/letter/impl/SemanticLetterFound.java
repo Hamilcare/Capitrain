@@ -17,7 +17,7 @@ public class SemanticLetterFound extends AbstractSemanticLetter {
 	@Override
 	public void updateAccC() {
 		int newValue = getAutomaton().getFeature().apply(getAutomaton().getAccumulatorD().getCurrentValue(),
-				getAutomaton().getFeature().getValue());
+				getAutomaton().getFeature().getValue(0));
 		getAutomaton().getAccumulatorC().updateValue(newValue);
 		getAutomaton().getAccumulatorC().setStartXi(getAutomaton().getAccumulatorD().getStartXi());
 	}

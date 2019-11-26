@@ -30,7 +30,7 @@ public class One extends AbstractFeature {
 	}
 
 	@Override
-	public int getValue() {
+	public int getValue(int xi) {
 		return 0;
 	}
 

@@ -34,7 +34,6 @@ public interface IAutomaton {
 
 	default void applyNextInput(Alphabet nextInput) {
 		IState newState = getCurrentState().applyTransition(nextInput);
-		System.out.println(newState.getLabel());
 		setCurrentState(newState);
 	}
 
@@ -46,4 +45,7 @@ public interface IAutomaton {
 
 	void setAccumulators(IAccumulator d, IAccumulator c, IAccumulator r);
 
+	void setBeforeAfter(int before, int after);
+	int getBefore();
+	int getAfter();
 }

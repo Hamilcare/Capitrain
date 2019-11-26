@@ -19,6 +19,6 @@ public interface IFeature {
 	int apply(int a, int b);
 
 	// delta/ d_ronde
-	int getValue();
+	int getValue(int xi);
 
 }

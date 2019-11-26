@@ -39,9 +39,7 @@ public abstract class AbstractFileReader implements ITranslator {
 				translatedInput.add(Alphabet.EQUALS);
 			}
 		}
-		for (Alphabet e : translatedInput) {
-			System.out.print(e + " ");
-		}
+
 	}
 
 	public Alphabet getNextInput() {

@@ -30,8 +30,8 @@ public class Range extends AbstractFeature {
 	}
 
 	@Override
-	public int getValue() {
-		return getAutomaton().getTranslator().getInputAtIndex(getAutomaton().getCurrentXiPosition());
+	public int getValue(int xi) {
+		return getAutomaton().getTranslator().getInputAtIndex(getAutomaton().getCurrentXiPosition() + xi);
 	}
 
 }
