@@ -17,7 +17,6 @@ public class OneLineFileTranslator extends AbstractFileReader {
 		br = Files.newBufferedReader(Paths.get(this.pathToFile));
 		while (br.ready()) {
 			rawInput.add(Character.getNumericValue((char) br.read()));
-
 		}
 
 	}

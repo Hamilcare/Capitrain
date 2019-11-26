@@ -32,10 +32,9 @@ public class IncreasingTest {
     @Parameterized.Parameters
     public static Collection dataSet() {
         return Arrays.asList(new Object[][] {
-                { new Max(), new Surface(), "./resources/pattern/increasing.csv", "./resources/input/catalogueExemples/increasing", new AutomatonResult(10, 9, 9) },
+//                { new Max(), new Surface(), "./resources/pattern/increasing.csv", "./resources/input/catalogueExemples/increasing", new AutomatonResult(10, 9, 9) },
                 { new Max(), new features.impl.Max(), "./resources/pattern/increasing.csv", "./resources/input/catalogueExemples/increasing", new AutomatonResult(6, 9, 9) },
                 { new Min(), new features.impl.Max(), "./resources/pattern/increasing.csv", "./resources/input/catalogueExemples/increasing", new AutomatonResult(3, 6, 6) },
-
         });
     }
 
