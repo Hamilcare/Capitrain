@@ -5,9 +5,6 @@ import features.IFeature;
 
 public class Min extends AbstractAggregator {
 
-	public Min() {
-	}
-
 	@Override
 	public String getName() {
 		return "MIN";

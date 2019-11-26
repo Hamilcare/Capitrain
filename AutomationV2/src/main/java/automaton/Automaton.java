@@ -8,15 +8,15 @@ import translation.ITranslator;
 
 public class Automaton implements IAutomaton {
 
-	public static final int UNDEFINEDGuard = -1;
+	public static final int UNDEFINED_GUARD = -1;
 
 	IFeature feature;
 	IAggregator aggregator;
 	ITranslator translator;
 
-	IAccumulator ACCD;// = new AccumulatorD();
-	IAccumulator ACCC;// = new AccumulatorC();
-	IAccumulator ACCR;// = new AccumulatorR();
+	IAccumulator accumulatorD;
+	IAccumulator accumulatorC;
+	IAccumulator accumulatorR;
 
 	int inputSequenceLength;
 	IState currentState;
@@ -24,12 +24,6 @@ public class Automaton implements IAutomaton {
 
 	int before;
 	int after;
-
-	int meilleurStart = UNDEFINEDGuard;
-	int meilleurEnd = UNDEFINEDGuard;
-
-	int bufferMeilleurStart = UNDEFINEDGuard;
-	int bufferMeilleurEnd = UNDEFINEDGuard;
 
 	@Override
 	public IFeature getFeature() {
@@ -47,16 +41,18 @@ public class Automaton implements IAutomaton {
 	}
 
 	@Override
-	public IAccumulator getAccumulatorD() { return ACCD; }
+	public IAccumulator getAccumulatorD() {
+		return accumulatorD;
+	}
 
 	@Override
 	public IAccumulator getAccumulatorC() {
-		return ACCC;
+		return accumulatorC;
 	}
 
 	@Override
 	public IAccumulator getAccumulatorR() {
-		return ACCR;
+		return accumulatorR;
 	}
 
 	@Override
@@ -95,16 +91,16 @@ public class Automaton implements IAutomaton {
 		int start;
 		int end;
 
-		int result = this.aggregator.apply(this.ACCR.getCurrentValue(), this.ACCC.getCurrentValue());
-		if (result == this.ACCR.getCurrentValue()) {
-			start = this.ACCR.getStartXi();
-			end = this.ACCR.getEndXi();
+		int result = this.aggregator.apply(this.accumulatorR.getCurrentValue(), this.accumulatorC.getCurrentValue());
+		if (result == this.accumulatorR.getCurrentValue()) {
+			start = this.accumulatorR.getStartXi();
+			end = this.accumulatorR.getEndXi();
 		} else {
-			start = this.ACCC.getStartXi();
-			end = this.ACCC.getEndXi();
+			start = this.accumulatorC.getStartXi();
+			end = this.accumulatorC.getEndXi();
 		}
 
-		int value = this.aggregator.apply(this.ACCR.getCurrentValue(), this.ACCC.getCurrentValue());
+		int value = this.aggregator.apply(this.accumulatorR.getCurrentValue(), this.accumulatorC.getCurrentValue());
 
 		return new AutomatonResult(value, start, end);
 	}
@@ -121,13 +117,13 @@ public class Automaton implements IAutomaton {
 
 	@Override
 	public void setAccumulators(IAccumulator d, IAccumulator c, IAccumulator r) {
-		this.ACCD = d;
-		this.ACCC = c;
-		this.ACCR = r;
+		this.accumulatorD = d;
+		this.accumulatorC = c;
+		this.accumulatorR = r;
 	}
 
 	@Override
-	public void setBeforeAfter(int before, int after){
+	public void setBeforeAfter(int before, int after) {
 		this.before = before;
 		this.after = after;
 	}
@@ -135,6 +131,7 @@ public class Automaton implements IAutomaton {
 	public int getBefore() {
 		return before;
 	}
+
 	public int getAfter() {
 		return after;
 	}

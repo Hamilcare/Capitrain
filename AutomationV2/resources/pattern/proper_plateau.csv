@@ -1,0 +1,8 @@
+1,1
+s,r,t
+>,out,s,s
+=,out,s,s
+<,out,s,r
+>,outr,r,t
+=,maybeb,r,t
+<,out,r,r

@@ -9,7 +9,6 @@ import alphabet.Alphabet;
 
 public abstract class AbstractFileReader implements ITranslator {
 	protected String pathToFile;
-	protected int previousValue;
 	protected BufferedReader br;
 	protected List<Alphabet> translatedInput;
 	protected List<Integer> rawInput;

@@ -33,9 +33,7 @@ public interface IAutomaton {
 	void setAggregator(IAggregator a);
 
 	default void applyNextInput(Alphabet nextInput) {
-		System.out.println(getCurrentState().getLabel());
 		IState newState = getCurrentState().applyTransition(nextInput);
-
 		setCurrentState(newState);
 	}
 

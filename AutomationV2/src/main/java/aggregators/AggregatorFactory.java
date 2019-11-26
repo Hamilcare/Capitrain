@@ -5,6 +5,11 @@ import aggregators.impl.Min;
 import aggregators.impl.Sum;
 
 public class AggregatorFactory {
+
+	private AggregatorFactory() {
+		// Sonar
+	};
+
 	public static IAggregator createAggregatorFromName(String name) {
 		switch (name.toUpperCase()) {
 		case "MAX":

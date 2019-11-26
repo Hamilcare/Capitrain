@@ -1,0 +1,11 @@
+1,1
+s,r,t
+>,out,s,s
+=,out,s,s
+<,out,s,r
+>,out,r,s
+=,maybeb,r,t
+<,out,r,r
+>,outr,t,s
+=,maybeb,t,t
+<,founde,t,r

@@ -26,7 +26,7 @@ import translation.ITranslator;
 import translation.impl.OneLineFileTranslator;
 
 @RunWith(Parameterized.class)
-public class PlateauTest {
+public class ProperPlateauTest {
 	private IAggregator aggregator;
 	private IFeature feature;
 	private String patternFilePath;
@@ -38,7 +38,7 @@ public class PlateauTest {
 	private static final String PATH_TO_INPUT = "./resources/input/catalogueExemples/plateau/";
 
 	@Parameterized.Parameters
-	public static Collection dataSet() {
+	public static Collection<Object[]> dataSet() {
 		// @formatter:off
 		return Arrays.asList(new Object[][] {
 				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(4, 3, 6) },
@@ -52,7 +52,7 @@ public class PlateauTest {
 		// @formatter:on
 	}
 
-	public PlateauTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
+	public ProperPlateauTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
 			AutomatonResult expectedResult) {
 		this.aggregator = aggregator;
 		this.feature = feature;

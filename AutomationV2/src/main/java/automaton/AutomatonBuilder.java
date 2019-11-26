@@ -19,7 +19,11 @@ import translation.ITranslator;
 
 public class AutomatonBuilder {
 
-	private final static String separator = ",";
+	private AutomatonBuilder() {
+		// Sonar
+	}
+
+	private static final String SEPARATOR = ",";
 
 	public static IAutomaton buildNewAutomaton(String pathToFile, IFeature feature, IAggregator aggregator,
 			ITranslator translator) throws IOException {
@@ -36,12 +40,12 @@ public class AutomatonBuilder {
 		automaton.setInputSequenceLenght(translator.getInputSequenceLength());
 
 		List<String> fileContent = Files.readAllLines(Paths.get(pathToFile));
-		String[] beforeAfter = fileContent.get(0).split(separator);
+		String[] beforeAfter = fileContent.get(0).split(SEPARATOR);
 		int before = Integer.parseInt(beforeAfter[0]);
 		int after = Integer.parseInt(beforeAfter[1]);
 		automaton.setBeforeAfter(before, after);
 
-		String[] states = fileContent.get(1).split(separator);
+		String[] states = fileContent.get(1).split(SEPARATOR);
 		String startLabel = states[0];
 
 		for (String stateLabel : states) {
@@ -49,7 +53,7 @@ public class AutomatonBuilder {
 		}
 
 		for (int i = 2; i < fileContent.size(); i++) {
-			String[] transitionParams = fileContent.get(i).split(separator);
+			String[] transitionParams = fileContent.get(i).split(SEPARATOR);
 
 			ITransition newTransition = new Transition(Alphabet.asEnum(transitionParams[0]),
 					SemanticLetterFactory.getSemantic(transitionParams[1], automaton, after),
@@ -62,8 +66,6 @@ public class AutomatonBuilder {
 
 		automaton.setAccumulators(new AccumulatorD(automaton), new AccumulatorC(automaton),
 				new AccumulatorR(automaton));
-
-
 
 		return automaton;
 	}

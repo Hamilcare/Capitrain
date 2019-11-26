@@ -1,5 +1,7 @@
 package parameterized;
 
+import static utils.Utils.NA;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,6 +14,7 @@ import org.junit.runners.Parameterized;
 import aggregators.IAggregator;
 import aggregators.impl.Max;
 import aggregators.impl.Min;
+import aggregators.impl.Sum;
 import automaton.AutomatonBuilder;
 import automaton.AutomatonResult;
 import automaton.AutomatonRunner;
@@ -33,15 +36,17 @@ public class IncreasingSequenceTest {
 	private static final String PATH_TO_INPUT = "./resources/input/catalogueExemples/increasingSequence/";
 
 	@Parameterized.Parameters
-	public static Collection dataSet() {
+	public static Collection<Object[]> dataSet() {
 		// @formatter:off
 		return Arrays.asList(new Object[][] {	
-//				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(3, 8, 10) },
-//				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(2, 4, 5) },
-//				{ new Min(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(3, 12, 14)},
-//				{ new Max(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(6, 8, 10)},
 				{ new Min(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT+"increasing_sequence_max", new AutomatonResult(3, 13, 13)},
-				{ new Max(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT+  "increasing_sequence_max", new AutomatonResult(6,6,9)}
+				{ new Max(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT+  "increasing_sequence_max", new AutomatonResult(6,6,9)},
+				{ new Min(), new features.impl.Width(),PATH_TO_PATTERN, PATH_TO_INPUT+  "increasing_sequence_max", new AutomatonResult(2,1,1)},
+				{ new Max(), new features.impl.Width(),PATH_TO_PATTERN, PATH_TO_INPUT+  "increasing_sequence_max", new AutomatonResult(5,6,9)},
+				{ new Min(), new features.impl.Surface(),PATH_TO_PATTERN, PATH_TO_INPUT+  "increasing_sequence_max", new AutomatonResult(4,13,13)},
+				{ new Max(), new features.impl.Surface(),PATH_TO_PATTERN, PATH_TO_INPUT+  "increasing_sequence_max", new AutomatonResult(17,6,9)},
+				{ new Sum(), new features.impl.One() ,PATH_TO_PATTERN, PATH_TO_INPUT+  "increasing_sequence_max", new AutomatonResult(3,NA,NA)},
+				{ new Sum(), new features.impl.Surface() ,PATH_TO_PATTERN, PATH_TO_INPUT+  "increasing_sequence_max", new AutomatonResult(29,NA,NA)}
 		});
 		// @formatter:on
 	}
@@ -67,8 +72,10 @@ public class IncreasingSequenceTest {
 		AutomatonResult result = automatonRunner.run();
 
 		Assert.assertEquals("Value", this.expectedResult.getValue(), result.getValue());
-		Assert.assertEquals("Borne inf.", this.expectedResult.getX1(), result.getX1());
-		Assert.assertEquals("Borne sup.", this.expectedResult.getX2(), result.getX2());
+		if (expectedResult.getX1() != NA) {
+			Assert.assertEquals("Borne inf.", this.expectedResult.getX1(), result.getX1());
+			Assert.assertEquals("Borne sup.", this.expectedResult.getX2(), result.getX2());
+		}
 
 	}
 

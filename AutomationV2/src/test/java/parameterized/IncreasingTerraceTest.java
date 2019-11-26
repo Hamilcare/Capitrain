@@ -14,45 +14,42 @@ import org.junit.runners.Parameterized;
 import aggregators.IAggregator;
 import aggregators.impl.Max;
 import aggregators.impl.Min;
-import aggregators.impl.Sum;
 import automaton.AutomatonBuilder;
 import automaton.AutomatonResult;
 import automaton.AutomatonRunner;
 import automaton.IAutomaton;
 import features.IFeature;
-import features.impl.Surface;
 import features.impl.Width;
 import translation.ITranslator;
 import translation.impl.OneLineFileTranslator;
 
 @RunWith(Parameterized.class)
-public class PlateauTest {
+public class IncreasingTerraceTest {
 	private IAggregator aggregator;
 	private IFeature feature;
 	private String patternFilePath;
 	private String dataFilePath;
 	private AutomatonResult expectedResult;
 
-	private static final String PATH_TO_PATTERN = "./resources/pattern/plateau.csv";
+	private static final String PATH_TO_PATTERN = "./resources/pattern/increasing_terrace.csv";
 
-	private static final String PATH_TO_INPUT = "./resources/input/catalogueExemples/plateau/";
+	private static final String PATH_TO_INPUT = "./resources/input/catalogueExemples/increasingTerrace/terrace_width";
 
 	@Parameterized.Parameters
 	public static Collection dataSet() {
 		// @formatter:off
 		return Arrays.asList(new Object[][] {
-				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(4, 3, 6) },
-				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(3, 8, 10) },
-				{ new Sum(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(7, NA, NA)},
-				{ new Max(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(10, 11, 12)},
-				{ new Min(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(3, 3, 3)},
-				{ new Sum(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(17, NA, NA)}
+				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT,new AutomatonResult(3, 11, 13) },
+				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT,new AutomatonResult(2, 5, 6) },
+				{ new Max(), new features.impl.Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,new AutomatonResult(10, 5, 6) },
+				{ new Min(), new features.impl.Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,new AutomatonResult(9, 11, 13) }
+				
 		});
 
 		// @formatter:on
 	}
 
-	public PlateauTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
+	public IncreasingTerraceTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
 			AutomatonResult expectedResult) {
 		this.aggregator = aggregator;
 		this.feature = feature;
