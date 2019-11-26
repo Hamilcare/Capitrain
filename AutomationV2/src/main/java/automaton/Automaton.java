@@ -1,9 +1,10 @@
-package automaton;
+package main.java.automaton;
 
-import accumulators.IAccumulator;
-import aggregators.IAggregator;
-import features.IFeature;
-import states.IState;
+import main.java.accumulators.IAccumulator;
+import main.java.aggregators.IAggregator;
+import main.java.features.IFeature;
+import main.java.states.IState;
+import main.java.translation.ITranslator;
 
 public class Automaton implements IAutomaton {
 
@@ -16,6 +17,9 @@ public class Automaton implements IAutomaton {
 	IAccumulator ACCD;// = new AccumulatorD();
 	IAccumulator ACCC;// = new AccumulatorC();
 	IAccumulator ACCR;// = new AccumulatorR();
+
+	ITranslator translator;
+
 	int inputSequenceLength;
 	IState currentState;
 	int currentXiPosition = 0;
@@ -105,6 +109,16 @@ public class Automaton implements IAutomaton {
 		System.out.println("start: " + start + ", end: " + end);
 
 		return AUTOMATON.aggregator.apply(AUTOMATON.ACCR.getCurrentValue(), AUTOMATON.ACCC.getCurrentValue());
+	}
+
+	@Override
+	public ITranslator getTranslator() {
+		return this.translator;
+	}
+
+	@Override
+	public void setTranslator(ITranslator translator) {
+		this.translator = translator;
 	}
 
 }

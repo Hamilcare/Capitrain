@@ -1,4 +1,4 @@
-package accumulators;
+package main.java.accumulators;
 
 public class AccumulatorD extends AbstractAccumulator {
 

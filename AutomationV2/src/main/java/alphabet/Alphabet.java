@@ -1,4 +1,4 @@
-package alphabet;
+package main.java.alphabet;
 
 public enum Alphabet {
 	MORE("<"), LESS(">"), EQUALS("="), UNKOWN("?!?");

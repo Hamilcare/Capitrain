@@ -1,7 +1,7 @@
-package aggregators.impl;
+package main.java.aggregators.impl;
 
-import aggregators.AbstractAggregator;
-import features.IFeature;
+import main.java.aggregators.AbstractAggregator;
+import main.java.features.IFeature;
 
 public final class Min extends AbstractAggregator {
 

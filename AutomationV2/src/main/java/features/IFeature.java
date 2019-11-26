@@ -1,6 +1,6 @@
-package features;
+package main.java.features;
 
-import automaton.IAutomaton;
+import main.java.automaton.IAutomaton;
 
 public interface IFeature {
 	IAutomaton getAutomaton();

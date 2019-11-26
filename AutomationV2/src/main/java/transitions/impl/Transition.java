@@ -1,9 +1,9 @@
-package transitions.impl;
+package main.java.transitions.impl;
 
-import alphabet.Alphabet;
-import semantic.letter.ISemanticLetter;
-import states.IState;
-import transitions.ITransition;
+import main.java.alphabet.Alphabet;
+import main.java.semantic.letter.ISemanticLetter;
+import main.java.states.IState;
+import main.java.transitions.ITransition;
 
 public class Transition implements ITransition {
 

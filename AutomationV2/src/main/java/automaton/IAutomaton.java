@@ -1,10 +1,11 @@
-package automaton;
+package main.java.automaton;
 
-import accumulators.IAccumulator;
-import aggregators.IAggregator;
-import alphabet.Alphabet;
-import features.IFeature;
-import states.IState;
+import main.java.accumulators.IAccumulator;
+import main.java.aggregators.IAggregator;
+import main.java.alphabet.Alphabet;
+import main.java.features.IFeature;
+import main.java.states.IState;
+import main.java.translation.ITranslator;
 
 public interface IAutomaton {
 	IFeature getFeature();
@@ -37,5 +38,9 @@ public interface IAutomaton {
 	}
 
 	int getResult();
+
+	void setTranslator(ITranslator translator);
+
+	ITranslator getTranslator();
 
 }

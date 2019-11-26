@@ -1,12 +1,13 @@
-package translation;
+package main.java.translation;
 
-import java.util.List;
+import main.java.alphabet.Alphabet;
 
 public interface ITranslator {
 
-	public List<Integer> getTextToTranslate();
+	Alphabet getNextInput();
 
-	public String getTranslatedText();
+	int getInputAtIndex(int index);
 
-	public void translate();
+	int getInputSequenceLength();
+
 }

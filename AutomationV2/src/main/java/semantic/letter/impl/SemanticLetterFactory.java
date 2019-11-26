@@ -1,7 +1,7 @@
-package semantic.letter.impl;
+package main.java.semantic.letter.impl;
 
-import automaton.Automaton;
-import semantic.letter.ISemanticLetter;
+import main.java.automaton.Automaton;
+import main.java.semantic.letter.ISemanticLetter;
 
 public class SemanticLetterFactory {
 

@@ -1,37 +1,35 @@
-package features.impl;
+package main.java.features.impl;
 
-import automaton.Automaton;
-import features.AbstractFeature;
-import application.Main;
+import main.java.features.AbstractFeature;
 
 public class Min extends AbstractFeature {
-    @Override
-    public String getName() {
-        return "MIN";
-    }
+	@Override
+	public String getName() {
+		return "MIN";
+	}
 
-    @Override
-    public int getNeutral() {
-        return Integer.MAX_VALUE;
-    }
+	@Override
+	public int getNeutral() {
+		return Integer.MAX_VALUE;
+	}
 
-    @Override
-    public int getMin() {
-        return Integer.MIN_VALUE;
-    }
+	@Override
+	public int getMin() {
+		return Integer.MIN_VALUE;
+	}
 
-    @Override
-    public int getMax() {
-        return Integer.MAX_VALUE;
-    }
+	@Override
+	public int getMax() {
+		return Integer.MAX_VALUE;
+	}
 
-    @Override
-    public int apply(int a, int b) {
-        return Math.min(a, b);
-    }
+	@Override
+	public int apply(int a, int b) {
+		return Math.min(a, b);
+	}
 
-    @Override
-    public int getValue() {
-        return Main.translator.getTextToTranslate().get(Automaton.AUTOMATON.getCurrentXiPosition());
-    }
+	@Override
+	public int getValue() {
+		return getAutomaton().getTranslator().getInputAtIndex(getAutomaton().getCurrentXiPosition());
+	}
 }

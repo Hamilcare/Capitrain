@@ -1,6 +1,6 @@
-package semantic.letter;
+package main.java.semantic.letter;
 
-import automaton.IAutomaton;
+import main.java.automaton.IAutomaton;
 
 public abstract class AbstractSemanticLetter implements ISemanticLetter {
 

@@ -1,33 +1,32 @@
-package automaton;
+package main.java.automaton;
 
-import alphabet.Alphabet;
-import translation.ITranslator;
+import main.java.translation.ITranslator;
 
 public class AutomatonRunner {
-    private IAutomaton automaton;
+	private IAutomaton automaton;
 
-    public AutomatonRunner(IAutomaton automaton){
-        this.automaton = automaton;
-    }
+	public AutomatonRunner(IAutomaton automaton) {
+		this.automaton = automaton;
+	}
 
-    public Result run(ITranslator translator){
-        this.automaton.setInputSequenceLenght(translator.getTextToTranslate().size());
+	public Result run(ITranslator translator) {
+		this.automaton.setInputSequenceLenght(translator.getInputSequenceLength());
 
-        for (int i = 0; i < translator.getTranslatedText().length(); i++) {
-            this.automaton.applyNextInput(Alphabet.asEnum(translator.getTranslatedText().charAt(i)));
-        }
-        return new Result(this.automaton.getResult());
-    }
+		for (int i = 0; i < translator.getInputSequenceLength() - 1; i++) {
+			this.automaton.applyNextInput(translator.getNextInput());
+		}
+		return new Result(this.automaton.getResult());
+	}
 
-    public class Result{
-        private Result(int value){
-            this.value = value;
-        }
+	public class Result {
+		private Result(int value) {
+			this.value = value;
+		}
 
-        public int getValue() {
-            return value;
-        }
+		public int getValue() {
+			return value;
+		}
 
-        private int value;
-    }
+		private int value;
+	}
 }

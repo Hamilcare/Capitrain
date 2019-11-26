@@ -1,7 +1,7 @@
-package aggregators;
+package main.java.aggregators;
 
-import automaton.IAutomaton;
-import features.IFeature;
+import main.java.automaton.IAutomaton;
+import main.java.features.IFeature;
 
 public interface IAggregator {
 
