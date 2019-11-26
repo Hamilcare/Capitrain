@@ -32,4 +32,5 @@ public class Surface extends AbstractFeature {
 	public int getValue() {
 		return getAutomaton().getTranslator().getInputAtIndex(getAutomaton().getCurrentXiPosition());
 	}
+
 }

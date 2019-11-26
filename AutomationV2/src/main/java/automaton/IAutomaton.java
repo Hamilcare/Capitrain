@@ -37,7 +37,7 @@ public interface IAutomaton {
 		setCurrentState(newState);
 	}
 
-	int getResult();
+	AutomatonResult getResult();
 
 	void setTranslator(ITranslator translator);
 

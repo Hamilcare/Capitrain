@@ -8,6 +8,7 @@ import main.java.features.FeatureFactory;
 import main.java.features.IFeature;
 
 public class CliParser {
+
 	private static final int NB_ARGS_REQUESTED = 4;
 	private static final int POS_PATTERN_FILE = 0;
 	private static final int POS_FEATURE = 1;
@@ -77,19 +78,12 @@ public class CliParser {
 		return this.feature;
 	}
 
-	public String getFeatureName() {
-		return this.args[POS_FEATURE];
-	}
-
 	public IAggregator getAggregator() {
 		return this.aggregator;
-	}
-
-	public String getAggregatorName() {
-		return this.args[POS_AGGREGATOR];
 	}
 
 	public String getDataFilePath() {
 		return this.dataFilePath;
 	}
+
 }

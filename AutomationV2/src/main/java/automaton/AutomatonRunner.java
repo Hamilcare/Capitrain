@@ -1,7 +1,5 @@
 package main.java.automaton;
 
-import main.java.translation.ITranslator;
-
 public class AutomatonRunner {
 	private IAutomaton automaton;
 
@@ -9,13 +7,13 @@ public class AutomatonRunner {
 		this.automaton = automaton;
 	}
 
-	public Result run(ITranslator translator) {
-		this.automaton.setInputSequenceLenght(translator.getInputSequenceLength());
+	public AutomatonResult run() {
+		this.automaton.setInputSequenceLenght(automaton.getInputSequenceLength());
 
-		for (int i = 0; i < translator.getInputSequenceLength() - 1; i++) {
-			this.automaton.applyNextInput(translator.getNextInput());
+		for (int i = 0; i < automaton.getInputSequenceLength() - 1; i++) {
+			this.automaton.applyNextInput(automaton.getTranslator().getNextInput());
 		}
-		return new Result(this.automaton.getResult());
+		return this.automaton.getResult();
 	}
 
 	public class Result {
@@ -29,4 +27,5 @@ public class AutomatonRunner {
 
 		private int value;
 	}
+
 }

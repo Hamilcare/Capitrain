@@ -8,21 +8,20 @@ import main.java.translation.ITranslator;
 
 public class Automaton implements IAutomaton {
 
-	public static final Automaton AUTOMATON = new Automaton();
+	public static Automaton AUTOMATON = new Automaton();
 	public static final int UNDEFINEDGuard = -1;
 
 	IFeature feature;
 	IAggregator aggregator;
+	ITranslator translator;
 
 	IAccumulator ACCD;// = new AccumulatorD();
 	IAccumulator ACCC;// = new AccumulatorC();
 	IAccumulator ACCR;// = new AccumulatorR();
 
-	ITranslator translator;
-
 	int inputSequenceLength;
 	IState currentState;
-	int currentXiPosition = 0;
+	int currentXiPosition = -1;
 
 	int meilleurStart = UNDEFINEDGuard;
 	int meilleurEnd = UNDEFINEDGuard;
@@ -42,7 +41,7 @@ public class Automaton implements IAutomaton {
 
 	@Override
 	public int getCurrentXiPosition() {
-		return AUTOMATON.currentXiPosition;
+		return this.currentXiPosition;
 	}
 
 	@Override
@@ -73,42 +72,42 @@ public class Automaton implements IAutomaton {
 
 	@Override
 	public void setCurrentState(IState newState) {
-		AUTOMATON.currentState = newState;
-		AUTOMATON.currentXiPosition++;
+		this.currentState = newState;
+		this.currentXiPosition++;
 	}
 
 	@Override
 	public void setInputSequenceLenght(int lenght) {
-		AUTOMATON.inputSequenceLength = lenght;
+		this.inputSequenceLength = lenght;
 	}
 
 	@Override
 	public void setFeature(IFeature f) {
-		AUTOMATON.feature = f;
+		this.feature = f;
 	}
 
 	@Override
 	public void setAggregator(IAggregator a) {
-		AUTOMATON.aggregator = a;
+		this.aggregator = a;
 	}
 
 	@Override
-	public int getResult() {
+	public AutomatonResult getResult() {
 		int start;
 		int end;
 
-		int result = AUTOMATON.aggregator.apply(AUTOMATON.ACCR.getCurrentValue(), AUTOMATON.ACCC.getCurrentValue());
-		if (result == AUTOMATON.ACCR.getCurrentValue()) {
-			start = AUTOMATON.ACCR.getStartXi();
-			end = AUTOMATON.ACCR.getEndXi();
+		int result = this.aggregator.apply(this.ACCR.getCurrentValue(), this.ACCC.getCurrentValue());
+		if (result == this.ACCR.getCurrentValue()) {
+			start = this.ACCR.getStartXi();
+			end = this.ACCR.getEndXi();
 		} else {
-			start = AUTOMATON.ACCC.getStartXi();
-			end = AUTOMATON.ACCC.getEndXi();
+			start = this.ACCC.getStartXi();
+			end = this.ACCC.getEndXi();
 		}
 
-		System.out.println("start: " + start + ", end: " + end);
+		int value = this.aggregator.apply(this.ACCR.getCurrentValue(), this.ACCC.getCurrentValue());
 
-		return AUTOMATON.aggregator.apply(AUTOMATON.ACCR.getCurrentValue(), AUTOMATON.ACCC.getCurrentValue());
+		return new AutomatonResult(value, start, end);
 	}
 
 	@Override

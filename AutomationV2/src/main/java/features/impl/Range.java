@@ -33,4 +33,5 @@ public class Range extends AbstractFeature {
 	public int getValue() {
 		return getAutomaton().getTranslator().getInputAtIndex(getAutomaton().getCurrentXiPosition());
 	}
+
 }
