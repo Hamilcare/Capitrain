@@ -15,8 +15,9 @@ public class OneLineFileTranslator extends AbstractFileReader {
 	@Override
 	protected void prepareFileReader() throws IOException {
 		br = Files.newBufferedReader(Paths.get(this.pathToFile));
-		while (br.ready()) {
-			rawInput.add(br.read());
+		int i;
+		while ((i = br.read()) != -1) {
+			rawInput.add(Character.getNumericValue((char) i));
 		}
 	}
 

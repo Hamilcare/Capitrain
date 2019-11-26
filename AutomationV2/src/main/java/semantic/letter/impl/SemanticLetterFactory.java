@@ -13,12 +13,16 @@ public class SemanticLetterFactory {
 			return new SemanticOut(automaton);
 		case "FOUND":
 			return new SemanticLetterFound(automaton);
+		case "FOUNDE":
+			return new SemanticLetterFoundEnd(automaton);
 		case "MAYBEB":
 			return new SemanticMaybeB(automaton);
 		case "MAYBEA":
 			return new SemanticMaybeA(automaton);
 		case "OUTA":
 			return new SemanticOutA(automaton);
+		case "OUTR":
+			return new SemanticOutR(automaton);
 		default:
 			return null;
 		}

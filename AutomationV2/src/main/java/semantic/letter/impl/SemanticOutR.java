@@ -12,13 +12,11 @@ public class SemanticOutR extends AbstractSemanticLetter {
 	@Override
 	public void updateAccR() {
 		// NothingToDo
-		throw new UnsupportedOperationException("Word OutR should not update accumulator R");
 	}
 
 	@Override
 	public void updateAccC() {
 		// NothingToDo
-		throw new UnsupportedOperationException("Word OutR should not update accumulator C");
 	}
 
 	@Override

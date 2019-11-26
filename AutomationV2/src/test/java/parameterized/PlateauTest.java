@@ -17,29 +17,38 @@ import automaton.AutomatonResult;
 import automaton.AutomatonRunner;
 import automaton.IAutomaton;
 import features.IFeature;
+import features.impl.Surface;
 import features.impl.Width;
 import translation.ITranslator;
 import translation.impl.OneLineFileTranslator;
 
 @RunWith(Parameterized.class)
-public class CompleteTest {
+public class PlateauTest {
 	private IAggregator aggregator;
 	private IFeature feature;
 	private String patternFilePath;
 	private String dataFilePath;
 	private AutomatonResult expectedResult;
 
+	private static final String PATH_TO_PATTERN = "./resources/pattern/plateau.csv";
+
+	private static final String PATH_TO_INPUT = "./resources/input/catalogueExemples/plateau/";
+
 	@Parameterized.Parameters
 	public static Collection dataSet() {
 		// @formatter:off
 		return Arrays.asList(new Object[][] {
-				{ new Max(), new Width(), "./resources/pattern/peak.csv", "./resources/input/other_dataset/exemple",new AutomatonResult(6, 11, 16) },
-				{ new Min(), new Width(), "./resources/pattern/peak.csv", "./resources/input/other_dataset/exemple",new AutomatonResult(5, 4, 8) }, });
+				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(4, 3, 6) },
+				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(3, 8, 10) },
+				{ new Max(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(10, 11, 12)},
+				{ new Min(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(3, 3, 3)}
+				
+		});
 
 		// @formatter:on
 	}
 
-	public CompleteTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
+	public PlateauTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
 			AutomatonResult expectedResult) {
 		this.aggregator = aggregator;
 		this.feature = feature;
