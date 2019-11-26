@@ -1,31 +1,24 @@
 package semantic.letter.impl;
 
-import automaton.Automaton;
+import automaton.IAutomaton;
 import semantic.letter.ISemanticLetter;
 
 public class SemanticLetterFactory {
 
-	static ISemanticLetter IN = new SemanticIn(Automaton.AUTOMATON);
-	static ISemanticLetter OUT = new SemanticOut(Automaton.AUTOMATON);
-	static ISemanticLetter FOUND = new SemanticLetterFound(Automaton.AUTOMATON);
-	static ISemanticLetter MAYBEB = new SemanticMaybeB(Automaton.AUTOMATON);
-	static ISemanticLetter MAYBEA = new SemanticMaybeA(Automaton.AUTOMATON);
-	static ISemanticLetter OUTA = new SemanticOutA(Automaton.AUTOMATON);
-
-	public static ISemanticLetter getSemantic(String requestedLetter) {
+	public static ISemanticLetter getSemantic(String requestedLetter, IAutomaton automaton) {
 		switch (requestedLetter.toUpperCase()) {
 		case "IN":
-			return IN;
+			return new SemanticIn(automaton);
 		case "OUT":
-			return OUT;
+			return new SemanticOut(automaton);
 		case "FOUND":
-			return FOUND;
+			return new SemanticLetterFound(automaton);
 		case "MAYBEB":
-			return MAYBEB;
+			return new SemanticMaybeB(automaton);
 		case "MAYBEA":
-			return MAYBEA;
+			return new SemanticMaybeA(automaton);
 		case "OUTA":
-			return OUTA;
+			return new SemanticOutA(automaton);
 		default:
 			return null;
 		}

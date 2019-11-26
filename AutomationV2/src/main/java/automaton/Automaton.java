@@ -8,7 +8,6 @@ import translation.ITranslator;
 
 public class Automaton implements IAutomaton {
 
-	public static Automaton AUTOMATON = new Automaton();
 	public static final int UNDEFINEDGuard = -1;
 
 	IFeature feature;
@@ -118,6 +117,13 @@ public class Automaton implements IAutomaton {
 	@Override
 	public void setTranslator(ITranslator translator) {
 		this.translator = translator;
+	}
+
+	@Override
+	public void setAccumulators(IAccumulator d, IAccumulator c, IAccumulator r) {
+		this.ACCD = d;
+		this.ACCC = c;
+		this.ACCR = r;
 	}
 
 }

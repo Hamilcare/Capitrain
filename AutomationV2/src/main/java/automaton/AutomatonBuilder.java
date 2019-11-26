@@ -23,10 +23,17 @@ public class AutomatonBuilder {
 
 	public static IAutomaton buildNewAutomaton(String pathToFile, IFeature feature, IAggregator aggregator,
 			ITranslator translator) throws IOException {
-		Automaton.AUTOMATON.setFeature(feature);
-		Automaton.AUTOMATON.setAggregator(aggregator);
-		Automaton.AUTOMATON.setTranslator(translator);
-		Automaton.AUTOMATON.setInputSequenceLenght(translator.getInputSequenceLength());
+		IAutomaton automaton = new Automaton();
+
+		feature.setAutomaton(automaton);
+		automaton.setFeature(feature);
+
+		aggregator.setAutomaton(automaton);
+		automaton.setAggregator(aggregator);
+
+		automaton.setTranslator(translator);
+
+		automaton.setInputSequenceLenght(translator.getInputSequenceLength());
 
 		List<String> fileContent = Files.readAllLines(Paths.get(pathToFile));
 		String[] states = fileContent.get(0).split(separator);
@@ -41,18 +48,17 @@ public class AutomatonBuilder {
 			String[] transitionParams = fileContent.get(i).split(separator);
 
 			ITransition newTransition = new Transition(Alphabet.asEnum(transitionParams[0]),
-					SemanticLetterFactory.getSemantic(transitionParams[1]),
+					SemanticLetterFactory.getSemantic(transitionParams[1], automaton),
 					StateFactory.getStateFromLabel(transitionParams[3]));
 
 			StateFactory.getStateFromLabel(transitionParams[2]).addTransition(newTransition);
 		}
 
-		Automaton.AUTOMATON.setCurrentState(StateFactory.getStateFromLabel(startLabel));
+		automaton.setCurrentState(StateFactory.getStateFromLabel(startLabel));
 
-		Automaton.AUTOMATON.ACCC = new AccumulatorC();
-		Automaton.AUTOMATON.ACCD = new AccumulatorD();
-		Automaton.AUTOMATON.ACCR = new AccumulatorR();
+		automaton.setAccumulators(new AccumulatorD(automaton), new AccumulatorC(automaton),
+				new AccumulatorR(automaton));
 
-		return Automaton.AUTOMATON;
+		return automaton;
 	}
 }

@@ -1,7 +1,6 @@
 package aggregators.impl;
 
 import aggregators.AbstractAggregator;
-import automaton.Automaton;
 import features.IFeature;
 
 public class Sum extends AbstractAggregator {
@@ -13,7 +12,7 @@ public class Sum extends AbstractAggregator {
 
 	@Override
 	public IFeature getFeature() {
-		return Automaton.AUTOMATON.getFeature();
+		return getAutomaton().getFeature();
 	}
 
 	@Override

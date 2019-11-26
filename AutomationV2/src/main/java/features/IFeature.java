@@ -5,6 +5,8 @@ import automaton.IAutomaton;
 public interface IFeature {
 	IAutomaton getAutomaton();
 
+	void setAutomaton(IAutomaton automaton);
+
 	String getName();
 
 	int getNeutral();

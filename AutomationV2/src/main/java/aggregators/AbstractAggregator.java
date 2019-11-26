@@ -1,9 +1,10 @@
 package aggregators;
 
-import automaton.Automaton;
 import automaton.IAutomaton;
 
 public abstract class AbstractAggregator implements IAggregator {
+
+	IAutomaton automaton;
 
 	public AbstractAggregator() {
 
@@ -11,7 +12,12 @@ public abstract class AbstractAggregator implements IAggregator {
 
 	@Override
 	public IAutomaton getAutomaton() {
-		return Automaton.AUTOMATON;
+		return automaton;
+	}
+
+	@Override
+	public void setAutomaton(IAutomaton automaton) {
+		this.automaton = automaton;
 	}
 
 }

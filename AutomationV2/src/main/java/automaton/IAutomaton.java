@@ -43,4 +43,6 @@ public interface IAutomaton {
 
 	ITranslator getTranslator();
 
+	void setAccumulators(IAccumulator d, IAccumulator c, IAccumulator r);
+
 }

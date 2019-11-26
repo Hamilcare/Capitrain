@@ -1,6 +1,5 @@
 package features.impl;
 
-import automaton.Automaton;
 import features.AbstractFeature;
 
 public class Max extends AbstractFeature {
@@ -31,7 +30,7 @@ public class Max extends AbstractFeature {
 
 	@Override
 	public int getValue() {
-		return getAutomaton().getTranslator().getInputAtIndex(Automaton.AUTOMATON.getCurrentXiPosition());
+		return getAutomaton().getTranslator().getInputAtIndex(getAutomaton().getCurrentXiPosition());
 	}
 
 }

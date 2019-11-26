@@ -15,4 +15,6 @@ public interface IAggregator {
 
 	IAutomaton getAutomaton();
 
+	void setAutomaton(IAutomaton automaton);
+
 }

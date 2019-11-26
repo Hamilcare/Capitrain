@@ -1,7 +1,6 @@
 package aggregators.impl;
 
 import aggregators.AbstractAggregator;
-import automaton.Automaton;
 import features.IFeature;
 
 public class Max extends AbstractAggregator {
@@ -14,7 +13,7 @@ public class Max extends AbstractAggregator {
 	@Override
 	public IFeature getFeature() {
 
-		return Automaton.AUTOMATON.getFeature();
+		return getAutomaton().getFeature();
 	}
 
 	@Override

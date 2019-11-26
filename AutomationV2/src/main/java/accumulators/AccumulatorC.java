@@ -1,6 +1,12 @@
 package accumulators;
 
+import automaton.IAutomaton;
+
 public class AccumulatorC extends AbstractAccumulator {
+
+	public AccumulatorC(IAutomaton automaton) {
+		super(automaton);
+	}
 
 	@Override
 	public void setToInitValue() {
