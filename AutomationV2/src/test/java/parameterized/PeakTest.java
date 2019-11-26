@@ -22,7 +22,7 @@ import translation.ITranslator;
 import translation.impl.OneLineFileTranslator;
 
 @RunWith(Parameterized.class)
-public class CompleteTest {
+public class PeakTest {
 	private IAggregator aggregator;
 	private IFeature feature;
 	private String patternFilePath;
@@ -33,13 +33,16 @@ public class CompleteTest {
 	public static Collection dataSet() {
 		// @formatter:off
 		return Arrays.asList(new Object[][] {
-				{ new Max(), new Width(), "./resources/pattern/peak.csv", "./resources/input/other_dataset/exemple",new AutomatonResult(6, 11, 16) },
-				{ new Min(), new Width(), "./resources/pattern/peak.csv", "./resources/input/other_dataset/exemple",new AutomatonResult(5, 4, 8) }, });
-
+				{ new Max(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(3, 8, 10) },
+				{ new Min(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(2, 4, 5) },
+				{ new Min(), new features.impl.Max(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(3, 12, 14)},
+				{ new Max(), new features.impl.Max(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(6, 8, 10)},
+				{ new Max(), new features.impl.Surface(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(14, 8, 10)},
+		});
 		// @formatter:on
 	}
 
-	public CompleteTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
+	public PeakTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
 			AutomatonResult expectedResult) {
 		this.aggregator = aggregator;
 		this.feature = feature;
