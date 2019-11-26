@@ -32,6 +32,6 @@ public class Surface extends AbstractFeature {
 
     @Override
     public int getValue() {
-        return Main.translator.getTextToTranslate().get(Automaton.AUTOMATON.getCurrentXiPosition());
+        return Automaton.AUTOMATON.getTranslator().getTextToTranslate().get(Automaton.AUTOMATON.getCurrentXiPosition());
     }
 }

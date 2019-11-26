@@ -15,15 +15,17 @@ import semantic.letter.impl.SemanticLetterFactory;
 import states.StateFactory;
 import transitions.ITransition;
 import transitions.impl.Transition;
+import translation.ITranslator;
 
 public class AutomatonBuilder {
 
 
 	private final static String separator = ",";
 
-	public static IAutomaton buildNewAutomaton(String pathToFile, IFeature feature, IAggregator aggregator) throws IOException{
+	public static IAutomaton buildNewAutomaton(String pathToFile, IFeature feature, IAggregator aggregator, ITranslator translator) throws IOException{
 		Automaton.AUTOMATON.setFeature(feature);
 		Automaton.AUTOMATON.setAggregator(aggregator);
+		Automaton.AUTOMATON.translator = translator;
 
 		List<String> fileContent = Files.readAllLines(Paths.get(pathToFile));
 		String[] states = fileContent.get(0).split(separator);

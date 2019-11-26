@@ -5,6 +5,7 @@ import aggregators.IAggregator;
 import alphabet.Alphabet;
 import features.IFeature;
 import states.IState;
+import translation.ITranslator;
 
 public interface IAutomaton {
 	IFeature getFeature();
@@ -36,6 +37,7 @@ public interface IAutomaton {
 		setCurrentState(newState);
 	}
 
-	int getResult();
+	AutomatonResult getResult();
 
+	ITranslator getTranslator();
 }

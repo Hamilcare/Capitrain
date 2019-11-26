@@ -10,24 +10,12 @@ public class AutomatonRunner {
         this.automaton = automaton;
     }
 
-    public Result run(ITranslator translator){
-        this.automaton.setInputSequenceLenght(translator.getTextToTranslate().size());
+    public AutomatonResult run(){
+        this.automaton.setInputSequenceLenght(this.automaton.getTranslator().getTextToTranslate().size());
 
-        for (int i = 0; i < translator.getTranslatedText().length(); i++) {
-            this.automaton.applyNextInput(Alphabet.asEnum(translator.getTranslatedText().charAt(i)));
+        for (int i = 0; i < this.automaton.getTranslator().getTranslatedText().length(); i++) {
+            this.automaton.applyNextInput(Alphabet.asEnum(this.automaton.getTranslator().getTranslatedText().charAt(i)));
         }
-        return new Result(this.automaton.getResult());
-    }
-
-    public class Result{
-        private Result(int value){
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        private int value;
+        return this.automaton.getResult();
     }
 }
