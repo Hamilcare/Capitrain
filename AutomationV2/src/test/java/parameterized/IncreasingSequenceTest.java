@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import aggregators.IAggregator;
+import aggregators.impl.Max;
 import aggregators.impl.Min;
 import automaton.AutomatonBuilder;
 import automaton.AutomatonResult;
@@ -39,7 +40,8 @@ public class IncreasingSequenceTest {
 //				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(2, 4, 5) },
 //				{ new Min(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(3, 12, 14)},
 //				{ new Max(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(6, 8, 10)},
-				{ new Min(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT+"increasing_sequence_max", new AutomatonResult(3, 13, 15)},
+				{ new Min(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT+"increasing_sequence_max", new AutomatonResult(3, 13, 13)},
+				{ new Max(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT+  "increasing_sequence_max", new AutomatonResult(6,6,9)}
 		});
 		// @formatter:on
 	}

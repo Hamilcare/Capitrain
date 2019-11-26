@@ -1,5 +1,7 @@
 package semantic.letter.impl;
 
+import static accumulators.AbstractAccumulator.UNSET_POSITION;
+
 import automaton.IAutomaton;
 import semantic.letter.AbstractSemanticLetter;
 
@@ -19,7 +21,9 @@ public class SemanticLetterFound extends AbstractSemanticLetter {
 		int newValue = getAutomaton().getFeature().apply(getAutomaton().getAccumulatorD().getCurrentValue(),
 				getAutomaton().getFeature().getValue(0));
 		getAutomaton().getAccumulatorC().updateValue(newValue);
-		getAutomaton().getAccumulatorC().setStartXi(getAutomaton().getAccumulatorD().getStartXi());
+		int startD = getAutomaton().getAccumulatorD().getStartXi();
+		getAutomaton().getAccumulatorC()
+				.setStartXi(startD == UNSET_POSITION ? getAutomaton().getCurrentXiPosition() : startD);
 	}
 
 	@Override

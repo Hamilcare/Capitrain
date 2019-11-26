@@ -11,8 +11,8 @@ public class CliParser {
 
 	private static final int NB_ARGS_REQUESTED = 4;
 	private static final int POS_PATTERN_FILE = 0;
-	private static final int POS_FEATURE = 1;
-	private static final int POS_AGGREGATOR = 2;
+	private static final int POS_FEATURE = 2;
+	private static final int POS_AGGREGATOR = 1;
 	private static final int POS_DATA_FILE = 3;
 
 	private String[] args;

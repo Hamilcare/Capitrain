@@ -1,10 +1,9 @@
 package aggregators.impl;
 
-
 import aggregators.AbstractAggregator;
 import features.IFeature;
 
-public final class Min extends AbstractAggregator {
+public class Min extends AbstractAggregator {
 
 	public Min() {
 	}

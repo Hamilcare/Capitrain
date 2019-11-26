@@ -9,7 +9,7 @@ public abstract class AbstractAccumulator implements IAccumulator {
 	int endXi;
 	int currentValue;
 
-	static final int UNSET_POSITION = -1;
+	public static final int UNSET_POSITION = -1;
 
 	public AbstractAccumulator(IAutomaton automaton) {
 		this.automaton = automaton;
