@@ -32,10 +32,10 @@ public class CompleteTest {
 	@Parameterized.Parameters
 	public static Collection dataSet() {
 		return Arrays.asList(new Object[][] {
-				{ new Max(), new Width(), "./input/peak.csv", "./input/exemple", new AutomatonResult(6, 11, 16) },
-				{ new Min(), new Width(), "./input/peak.csv", "./input/exemple", new AutomatonResult(5, 4, 8) },
-				{ new Min(), new Width(), "./input/peak.csv", "./input/exemple", new AutomatonResult(5, 4, 8) },
-				{ new Min(), new Width(), "./input/peak.csv", "./input/exemple", new AutomatonResult(5, 4, 8) }, });
+				{ new Max(), new Width(), "./resources/pattern/peak.csv", "./resources/input/other_dataset/exemple",
+						new AutomatonResult(6, 11, 16) },
+				{ new Min(), new Width(), "./resources/pattern/peak.csv", "./resources/input/other_dataset/exemple",
+						new AutomatonResult(5, 4, 8) }, });
 	}
 
 	public CompleteTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
