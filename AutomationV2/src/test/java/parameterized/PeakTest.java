@@ -32,7 +32,7 @@ public class PeakTest {
 	@Parameterized.Parameters
 	public static Collection dataSet() {
 		// @formatter:off
-		return Arrays.asList(new Object[][] {
+		return Arrays.asList(new Object[][] {	
 				{ new Max(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(3, 8, 10) },
 				{ new Min(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(2, 4, 5) },
 				{ new Min(), new features.impl.Max(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(3, 12, 14)},

@@ -1,5 +1,7 @@
 package parameterized;
 
+import static utils.Utils.NA;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,6 +14,7 @@ import org.junit.runners.Parameterized;
 import aggregators.IAggregator;
 import aggregators.impl.Max;
 import aggregators.impl.Min;
+import aggregators.impl.Sum;
 import automaton.AutomatonBuilder;
 import automaton.AutomatonResult;
 import automaton.AutomatonRunner;
@@ -40,9 +43,10 @@ public class PlateauTest {
 		return Arrays.asList(new Object[][] {
 				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(4, 3, 6) },
 				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(3, 8, 10) },
+				{ new Sum(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(7, NA, NA)},
 				{ new Max(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(10, 11, 12)},
-				{ new Min(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(3, 3, 3)}
-				
+				{ new Min(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(3, 3, 3)},
+				{ new Sum(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(17, NA, NA)}
 		});
 
 		// @formatter:on
@@ -69,8 +73,10 @@ public class PlateauTest {
 		AutomatonResult result = automatonRunner.run();
 
 		Assert.assertEquals("Value", this.expectedResult.getValue(), result.getValue());
-		Assert.assertEquals("Borne inf.", this.expectedResult.getX1(), result.getX1());
-		Assert.assertEquals("Borne sup.", this.expectedResult.getX2(), result.getX2());
+		if (expectedResult.getX1() != -10) {
+			Assert.assertEquals("Borne inf.", this.expectedResult.getX1(), result.getX1());
+			Assert.assertEquals("Borne sup.", this.expectedResult.getX2(), result.getX2());
+		}
 
 	}
 
