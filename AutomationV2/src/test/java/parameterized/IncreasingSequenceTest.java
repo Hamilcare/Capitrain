@@ -10,39 +10,41 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import aggregators.IAggregator;
-import aggregators.impl.Max;
 import aggregators.impl.Min;
 import automaton.AutomatonBuilder;
 import automaton.AutomatonResult;
 import automaton.AutomatonRunner;
 import automaton.IAutomaton;
 import features.IFeature;
-import features.impl.Width;
 import translation.ITranslator;
 import translation.impl.OneLineFileTranslator;
 
 @RunWith(Parameterized.class)
-public class PeakTest {
+public class IncreasingSequenceTest {
 	private IAggregator aggregator;
 	private IFeature feature;
 	private String patternFilePath;
 	private String dataFilePath;
 	private AutomatonResult expectedResult;
 
+	private static final String PATH_TO_PATTERN = "./resources/pattern/increasing_sequence.csv";
+
+	private static final String PATH_TO_INPUT = "./resources/input/catalogueExemples/increasingSequence/";
+
 	@Parameterized.Parameters
 	public static Collection dataSet() {
 		// @formatter:off
 		return Arrays.asList(new Object[][] {	
-				{ new Max(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(3, 8, 10) },
-				{ new Min(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(2, 4, 5) },
-				{ new Min(), new features.impl.Max(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(3, 12, 14)},
-				{ new Max(), new features.impl.Max(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(6, 8, 10)},
-				{ new Max(), new features.impl.Surface(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(14, 8, 10)},
+//				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(3, 8, 10) },
+//				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(2, 4, 5) },
+//				{ new Min(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(3, 12, 14)},
+//				{ new Max(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT, new AutomatonResult(6, 8, 10)},
+				{ new Min(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT+"increasing_sequence_max", new AutomatonResult(3, 13, 15)},
 		});
 		// @formatter:on
 	}
 
-	public PeakTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
+	public IncreasingSequenceTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
 			AutomatonResult expectedResult) {
 		this.aggregator = aggregator;
 		this.feature = feature;
