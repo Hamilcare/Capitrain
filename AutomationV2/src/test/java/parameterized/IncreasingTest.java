@@ -35,7 +35,7 @@ public class IncreasingTest {
                 { new Max(), new Surface(), "./resources/pattern/increasing.csv", "./resources/input/catalogueExemples/increasing", new AutomatonResult(10, 9, 9) },
                 { new Max(), new features.impl.Max(), "./resources/pattern/increasing.csv", "./resources/input/catalogueExemples/increasing", new AutomatonResult(6, 9, 9) },
                 { new Min(), new features.impl.Max(), "./resources/pattern/increasing.csv", "./resources/input/catalogueExemples/increasing", new AutomatonResult(3, 6, 6) },
-
+                { new Min(), new features.impl.Min(), "./resources/pattern/increasing.csv", "./resources/input/catalogueExemples/increasing", new AutomatonResult(1, 6, 6) },
         });
     }
 

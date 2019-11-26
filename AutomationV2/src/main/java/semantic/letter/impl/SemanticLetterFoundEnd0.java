@@ -4,7 +4,7 @@ import automaton.IAutomaton;
 import features.IFeature;
 import semantic.letter.AbstractSemanticLetter;
 
-public class SemanticLetterFoundEnd0 extends SemanticLetterFound {
+public class SemanticLetterFoundEnd0 extends SemanticLetterFoundEnd {
 
 	public SemanticLetterFoundEnd0(IAutomaton automaton) {
 		super(automaton);

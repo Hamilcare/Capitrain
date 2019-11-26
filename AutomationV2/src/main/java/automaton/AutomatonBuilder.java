@@ -39,8 +39,9 @@ public class AutomatonBuilder {
 		String[] beforeAfter = fileContent.get(0).split(separator);
 		int before = Integer.parseInt(beforeAfter[0]);
 		int after = Integer.parseInt(beforeAfter[1]);
-		String[] states = fileContent.get(1).split(separator);
+		automaton.setBeforeAfter(before, after);
 
+		String[] states = fileContent.get(1).split(separator);
 		String startLabel = states[0];
 
 		for (String stateLabel : states) {
@@ -62,7 +63,7 @@ public class AutomatonBuilder {
 		automaton.setAccumulators(new AccumulatorD(automaton), new AccumulatorC(automaton),
 				new AccumulatorR(automaton));
 
-		automaton.setBeforeAfter(before, after);
+
 
 		return automaton;
 	}
