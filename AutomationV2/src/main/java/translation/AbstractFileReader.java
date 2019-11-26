@@ -3,7 +3,6 @@ package translation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import alphabet.Alphabet;
@@ -18,7 +17,7 @@ public abstract class AbstractFileReader implements ITranslator {
 
 	public AbstractFileReader(String path) throws IOException {
 		this.pathToFile = path;
-		this.translatedInput = new LinkedList<>();
+		this.translatedInput = new ArrayList<>();
 		this.rawInput = new ArrayList<>();
 		currentIndex = 0;
 		prepareFileReader();
