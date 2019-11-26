@@ -47,10 +47,7 @@ public class Automaton implements IAutomaton {
 	}
 
 	@Override
-	public IAccumulator getAccumulatorD() {
-
-		return ACCD;
-	}
+	public IAccumulator getAccumulatorD() { return ACCD; }
 
 	@Override
 	public IAccumulator getAccumulatorC() {

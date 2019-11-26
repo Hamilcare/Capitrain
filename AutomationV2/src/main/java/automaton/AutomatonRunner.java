@@ -13,11 +13,11 @@ public class AutomatonRunner {
 		this.automaton.setInputSequenceLenght(automaton.getInputSequenceLength());
 		start = System.currentTimeMillis();
 		for (int i = 0; i < automaton.getInputSequenceLength() - 1; i++) {
-			if (i % 10000 == 0) {
-				end = System.currentTimeMillis();
-				System.out.println(i + "en " + (end - start) + "ms");
-				start = System.currentTimeMillis();
-			}
+//			if (i % 10000 == 0) {
+//				end = System.currentTimeMillis();
+//				System.out.println(i + "en " + (end - start) + "ms");
+//				start = System.currentTimeMillis();
+//			}
 			this.automaton.applyNextInput(automaton.getTranslator().getNextInput());
 		}
 		return this.automaton.getResult();
