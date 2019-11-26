@@ -16,16 +16,4 @@ public class AutomatonRunner {
 		return this.automaton.getResult();
 	}
 
-	public class Result {
-		private Result(int value) {
-			this.value = value;
-		}
-
-		public int getValue() {
-			return value;
-		}
-
-		private int value;
-	}
-
 }
