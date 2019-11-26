@@ -1,21 +1,21 @@
-package main.java.automaton;
+package automaton;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import main.java.accumulators.AccumulatorC;
-import main.java.accumulators.AccumulatorD;
-import main.java.accumulators.AccumulatorR;
-import main.java.aggregators.IAggregator;
-import main.java.alphabet.Alphabet;
-import main.java.features.IFeature;
-import main.java.semantic.letter.impl.SemanticLetterFactory;
-import main.java.states.StateFactory;
-import main.java.transitions.ITransition;
-import main.java.transitions.impl.Transition;
-import main.java.translation.ITranslator;
+import accumulators.AccumulatorC;
+import accumulators.AccumulatorD;
+import accumulators.AccumulatorR;
+import aggregators.IAggregator;
+import alphabet.Alphabet;
+import features.IFeature;
+import semantic.letter.impl.SemanticLetterFactory;
+import states.StateFactory;
+import transitions.ITransition;
+import transitions.impl.Transition;
+import translation.ITranslator;
 
 public class AutomatonBuilder {
 

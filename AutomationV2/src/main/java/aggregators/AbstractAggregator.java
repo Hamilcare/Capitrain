@@ -1,7 +1,7 @@
-package main.java.aggregators;
+package aggregators;
 
-import main.java.automaton.Automaton;
-import main.java.automaton.IAutomaton;
+import automaton.Automaton;
+import automaton.IAutomaton;
 
 public abstract class AbstractAggregator implements IAggregator {
 

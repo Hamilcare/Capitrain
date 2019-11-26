@@ -1,4 +1,4 @@
-package main.java.translation;
+package translation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import main.java.alphabet.Alphabet;
+import alphabet.Alphabet;
 
 public abstract class AbstractFileReader implements ITranslator {
 	protected String pathToFile;

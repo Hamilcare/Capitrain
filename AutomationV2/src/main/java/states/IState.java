@@ -1,7 +1,7 @@
-package main.java.states;
+package states;
 
-import main.java.alphabet.Alphabet;
-import main.java.transitions.ITransition;
+import alphabet.Alphabet;
+import transitions.ITransition;
 
 public interface IState {
 

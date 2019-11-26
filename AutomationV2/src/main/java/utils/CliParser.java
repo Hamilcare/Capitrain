@@ -1,11 +1,11 @@
-package main.java.utils;
+package utils;
 
 import java.io.File;
 
-import main.java.aggregators.AggregatorFactory;
-import main.java.aggregators.IAggregator;
-import main.java.features.FeatureFactory;
-import main.java.features.IFeature;
+import aggregators.AggregatorFactory;
+import aggregators.IAggregator;
+import features.FeatureFactory;
+import features.IFeature;
 
 public class CliParser {
 

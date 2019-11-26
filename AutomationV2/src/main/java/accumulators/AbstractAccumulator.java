@@ -1,7 +1,7 @@
-package main.java.accumulators;
+package accumulators;
 
-import main.java.automaton.Automaton;
-import main.java.automaton.IAutomaton;
+import automaton.Automaton;
+import automaton.IAutomaton;
 
 public abstract class AbstractAccumulator implements IAccumulator {
 

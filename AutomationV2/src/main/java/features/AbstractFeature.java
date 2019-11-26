@@ -1,7 +1,7 @@
-package main.java.features;
+package features;
 
-import main.java.automaton.Automaton;
-import main.java.automaton.IAutomaton;
+import automaton.Automaton;
+import automaton.IAutomaton;
 
 public abstract class AbstractFeature implements IFeature {
 

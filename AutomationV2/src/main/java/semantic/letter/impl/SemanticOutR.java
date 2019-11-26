@@ -1,7 +1,7 @@
-package main.java.semantic.letter.impl;
+package semantic.letter.impl;
 
-import main.java.automaton.IAutomaton;
-import main.java.semantic.letter.AbstractSemanticLetter;
+import automaton.IAutomaton;
+import semantic.letter.AbstractSemanticLetter;
 
 public class SemanticOutR extends AbstractSemanticLetter {
 

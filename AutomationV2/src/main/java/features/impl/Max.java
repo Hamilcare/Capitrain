@@ -1,7 +1,7 @@
-package main.java.features.impl;
+package features.impl;
 
-import main.java.automaton.Automaton;
-import main.java.features.AbstractFeature;
+import automaton.Automaton;
+import features.AbstractFeature;
 
 public class Max extends AbstractFeature {
 	@Override

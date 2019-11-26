@@ -1,6 +1,6 @@
-package main.java.semantic.letter;
+package semantic.letter;
 
-import main.java.automaton.IAutomaton;
+import automaton.IAutomaton;
 
 public interface ISemanticLetter {
 

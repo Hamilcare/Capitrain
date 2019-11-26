@@ -1,6 +1,6 @@
-package main.java.accumulators;
+package accumulators;
 
-import main.java.automaton.IAutomaton;
+import automaton.IAutomaton;
 
 public interface IAccumulator {
 	IAutomaton getAutomaton();

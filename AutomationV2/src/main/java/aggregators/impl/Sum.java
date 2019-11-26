@@ -1,8 +1,8 @@
-package main.java.aggregators.impl;
+package aggregators.impl;
 
-import main.java.aggregators.AbstractAggregator;
-import main.java.automaton.Automaton;
-import main.java.features.IFeature;
+import aggregators.AbstractAggregator;
+import automaton.Automaton;
+import features.IFeature;
 
 public class Sum extends AbstractAggregator {
 

@@ -1,6 +1,6 @@
-package main.java.translation;
+package translation;
 
-import main.java.alphabet.Alphabet;
+import alphabet.Alphabet;
 
 public interface ITranslator {
 

@@ -1,12 +1,12 @@
-package main.java.aggregators.impl;
+package aggregators.impl;
 
-import main.java.aggregators.AbstractAggregator;
-import main.java.features.IFeature;
+
+import aggregators.AbstractAggregator;
+import features.IFeature;
 
 public final class Min extends AbstractAggregator {
 
 	public Min() {
-
 	}
 
 	@Override

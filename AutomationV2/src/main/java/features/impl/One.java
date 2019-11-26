@@ -1,6 +1,6 @@
-package main.java.features.impl;
+package features.impl;
 
-import main.java.features.AbstractFeature;
+import features.AbstractFeature;
 
 public class One extends AbstractFeature {
 

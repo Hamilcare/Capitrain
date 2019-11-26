@@ -1,10 +1,10 @@
-package main.java.states.impl;
+package states.impl;
 
 import java.util.HashMap;
 
-import main.java.alphabet.Alphabet;
-import main.java.states.IState;
-import main.java.transitions.ITransition;
+import alphabet.Alphabet;
+import states.IState;
+import transitions.ITransition;
 
 public class State implements IState {
 

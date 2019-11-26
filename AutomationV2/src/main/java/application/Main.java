@@ -1,15 +1,15 @@
-package main.java.application;
+package application;
 
 import java.io.IOException;
 
-import main.java.automaton.AutomatonBuilder;
-import main.java.automaton.AutomatonResult;
-import main.java.automaton.AutomatonRunner;
-import main.java.automaton.IAutomaton;
-import main.java.translation.ITranslator;
-import main.java.translation.impl.OneLineFileTranslator;
-import main.java.utils.CliParser;
-import main.java.utils.CliParserException;
+import automaton.AutomatonBuilder;
+import automaton.AutomatonResult;
+import automaton.AutomatonRunner;
+import automaton.IAutomaton;
+import translation.ITranslator;
+import translation.impl.OneLineFileTranslator;
+import utils.CliParser;
+import utils.CliParserException;
 
 public class Main {
 
@@ -44,28 +44,4 @@ public class Main {
 		System.out.println("Automaton Time : " + (endComputation - startComputation));
 		System.out.println("Total Time : " + (endComputation - startTranslation));
 	}
-
-//	public static ITranslator translateInput(String pathToData) {
-//		try {
-//			String content = new String(Files.readAllBytes(Paths.get(pathToData)));
-//			System.out.println("Text contains " + content.length() + " characters");
-//
-//			List<Integer> textToTranslate = new ArrayList<>(content.length());
-//			for (int i = 0; i < content.length(); i++) {
-//				textToTranslate.add(Character.getNumericValue(content.charAt(i)));
-//			}
-//
-//			System.out.println("size array : " + textToTranslate.size());
-//			ITranslator translator = new Translate(textToTranslate);
-//			translator.translate();
-//			System.out.println("Translated");
-//
-//			return translator;
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-
 }

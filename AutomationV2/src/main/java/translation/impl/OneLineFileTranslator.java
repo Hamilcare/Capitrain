@@ -1,10 +1,10 @@
-package main.java.translation.impl;
+package translation.impl;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import main.java.translation.AbstractFileReader;
+import translation.AbstractFileReader;
 
 public class OneLineFileTranslator extends AbstractFileReader {
 

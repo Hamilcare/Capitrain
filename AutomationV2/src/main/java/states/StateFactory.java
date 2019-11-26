@@ -1,8 +1,8 @@
-package main.java.states;
+package states;
 
 import java.util.HashMap;
 
-import main.java.states.impl.State;
+import states.impl.State;
 
 public class StateFactory {
 	static HashMap<String, IState> allStates = new HashMap<>();

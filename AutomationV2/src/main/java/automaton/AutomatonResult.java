@@ -1,4 +1,4 @@
-package main.java.automaton;
+package automaton;
 
 public class AutomatonResult {
     private int value;

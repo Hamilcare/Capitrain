@@ -1,11 +1,11 @@
-package main.java.features;
+package features;
 
-import main.java.features.impl.Max;
-import main.java.features.impl.Min;
-import main.java.features.impl.One;
-import main.java.features.impl.Range;
-import main.java.features.impl.Surface;
-import main.java.features.impl.Width;
+import features.impl.Max;
+import features.impl.Min;
+import features.impl.One;
+import features.impl.Range;
+import features.impl.Surface;
+import features.impl.Width;
 
 public class FeatureFactory {
 	public static IFeature createFeatureFromName(String featureName) {

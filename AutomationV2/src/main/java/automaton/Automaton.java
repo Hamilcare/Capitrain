@@ -1,10 +1,10 @@
-package main.java.automaton;
+package automaton;
 
-import main.java.accumulators.IAccumulator;
-import main.java.aggregators.IAggregator;
-import main.java.features.IFeature;
-import main.java.states.IState;
-import main.java.translation.ITranslator;
+import accumulators.IAccumulator;
+import aggregators.IAggregator;
+import features.IFeature;
+import states.IState;
+import translation.ITranslator;
 
 public class Automaton implements IAutomaton {
 

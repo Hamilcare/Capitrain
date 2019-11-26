@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 public class CliParserException extends Exception {
 	public CliParserException(String message) {
