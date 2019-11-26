@@ -33,7 +33,7 @@ public class Width extends AbstractFeature {
 	}
 
 	@Override
-	public int getValue() {
+	public int getValue(int xi) {
 		return 1;
 	}
 

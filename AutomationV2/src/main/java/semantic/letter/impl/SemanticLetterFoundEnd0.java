@@ -1,20 +1,22 @@
 package semantic.letter.impl;
 
 import automaton.IAutomaton;
+import features.IFeature;
 import semantic.letter.AbstractSemanticLetter;
 
-public class SemanticLetterFoundEnd extends AbstractSemanticLetter {
+public class SemanticLetterFoundEnd0 extends SemanticLetterFound {
 
-	public SemanticLetterFoundEnd(IAutomaton automaton) {
+	public SemanticLetterFoundEnd0(IAutomaton automaton) {
 		super(automaton);
 	}
 
 	@Override
 	public void updateAccR() {
-		int tmpValue = getAutomaton().getFeature().apply(getAutomaton().getAccumulatorD().getCurrentValue(),
+		int innerValue = getAutomaton().getFeature().apply(getAutomaton().getAccumulatorD().getCurrentValue(),
 				getAutomaton().getFeature().getValue(0));
-		int newValue = getAutomaton().getAggregator().apply(getAutomaton().getAccumulatorR().getCurrentValue(),
-				tmpValue);
+		int rightValue = getAutomaton().getFeature().apply(innerValue, getAutomaton().getFeature().getValue(1));
+
+		int newValue = getAutomaton().getAggregator().apply(getAutomaton().getAccumulatorR().getCurrentValue(), rightValue);
 
 		if (newValue != getAutomaton().getAccumulatorR().getCurrentValue()) {
 			getAutomaton().getAccumulatorR().updateValue(newValue);
@@ -29,15 +31,6 @@ public class SemanticLetterFoundEnd extends AbstractSemanticLetter {
 
 	}
 
-	@Override
-	public void updateAccC() {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void updateAccD() {
-		getAutomaton().getAccumulatorD().setToInitValue();
-	}
 
 }

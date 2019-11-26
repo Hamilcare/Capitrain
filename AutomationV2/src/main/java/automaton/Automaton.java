@@ -22,6 +22,9 @@ public class Automaton implements IAutomaton {
 	IState currentState;
 	int currentXiPosition = -1;
 
+	int before;
+	int after;
+
 	int meilleurStart = UNDEFINEDGuard;
 	int meilleurEnd = UNDEFINEDGuard;
 
@@ -124,6 +127,19 @@ public class Automaton implements IAutomaton {
 		this.ACCD = d;
 		this.ACCC = c;
 		this.ACCR = r;
+	}
+
+	@Override
+	public void setBeforeAfter(int before, int after){
+		this.before = before;
+		this.after = after;
+	}
+
+	public int getBefore() {
+		return before;
+	}
+	public int getAfter() {
+		return after;
 	}
 
 }

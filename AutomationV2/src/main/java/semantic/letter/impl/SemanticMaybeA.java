@@ -22,7 +22,7 @@ public class SemanticMaybeA extends AbstractSemanticLetter {
 	@Override
 	public void updateAccD() {
 		int newValue = getAutomaton().getFeature().apply(getAutomaton().getAccumulatorD().getCurrentValue(),
-				getAutomaton().getFeature().getValue());
+				getAutomaton().getFeature().getValue(0));
 		getAutomaton().getAccumulatorD().updateValue(newValue);
 	}
 
