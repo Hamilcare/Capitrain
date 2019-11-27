@@ -1,0 +1,8 @@
+0,0
+s,r
+>,out,s,s
+=,out,s,s
+<,found,s,r
+>,outa,r,s
+=,outa,r,s
+<,in,r,r
