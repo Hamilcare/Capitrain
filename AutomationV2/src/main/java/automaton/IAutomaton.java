@@ -1,6 +1,9 @@
 package automaton;
 
-import accumulators.IAccumulator;
+import java.util.List;
+
+import accumulators.finaux.IAccumulatorFinal;
+import accumulators.tmp.IAccumulatorTemporaire;
 import aggregators.IAggregator;
 import alphabet.Alphabet;
 import features.IFeature;
@@ -14,11 +17,11 @@ public interface IAutomaton {
 
 	int getCurrentXiPosition();
 
-	IAccumulator getAccumulatorD();
+	IAccumulatorTemporaire getAccumulatorD();
 
-	IAccumulator getAccumulatorC();
+	IAccumulatorTemporaire getAccumulatorC();
 
-	IAccumulator getAccumulatorR();
+	IAccumulatorFinal getAccumulatorR();
 
 	int getInputSequenceLength();
 
@@ -37,13 +40,13 @@ public interface IAutomaton {
 		setCurrentState(newState);
 	}
 
-	AutomatonResult getResult();
+	List<AutomatonResult> getResult();
 
 	void setTranslator(ITranslator translator);
 
 	ITranslator getTranslator();
 
-	void setAccumulators(IAccumulator d, IAccumulator c, IAccumulator r);
+	void setAccumulators(IAccumulatorTemporaire d, IAccumulatorTemporaire c, IAccumulatorFinal r);
 
 	void setBeforeAfter(int before, int after);
 

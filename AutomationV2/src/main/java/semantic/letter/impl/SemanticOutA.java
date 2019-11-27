@@ -11,15 +11,36 @@ public class SemanticOutA extends AbstractSemanticLetter {
 
 	@Override
 	public void updateAccR() {
-		int newValue = getAutomaton().getAggregator().apply(getAutomaton().getAccumulatorR().getCurrentValue(),
-				getAutomaton().getAccumulatorC().getCurrentValue());
-
-		if (newValue != getAutomaton().getAccumulatorR().getCurrentValue()) {
-			getAutomaton().getAccumulatorR().setStartXi(getAutomaton().getAccumulatorC().getStartXi());
-			getAutomaton().getAccumulatorR().setEndXi(getAutomaton().getAccumulatorC().getEndXi());
+		int bestValue = getAutomaton().getAccumulatorR().getCurrentValue();
+		int currentMatchValue = getAutomaton().getAccumulatorC().getCurrentValue();
+		if (bestValue == currentMatchValue) {
+			getAutomaton().getAccumulatorR().addStartXi(getAutomaton().getAccumulatorC().getStartXi());
+			getAutomaton().getAccumulatorR().addEndXi(getAutomaton().getAccumulatorC().getEndXi());
 		}
 
-		getAutomaton().getAccumulatorR().updateValue(newValue);
+		else {
+			int result = getAutomaton().getAggregator().apply(currentMatchValue, bestValue);
+			if (result != bestValue) {
+				getAutomaton().getAccumulatorR().setStartXi(getAutomaton().getAccumulatorC().getStartXi());
+				getAutomaton().getAccumulatorR().setEndXi(getAutomaton().getAccumulatorC().getEndXi());
+				getAutomaton().getAccumulatorR().updateValue(result);
+			}
+		}
+
+//		int currCValue = getAutomaton().getAccumulatorC().getCurrentValue();
+//		int currBestValue = getAutomaton().getAccumulatorR().getCurrentValue();
+//
+//		int newValue = getAutomaton().getAggregator().apply(currBestValue, currCValue);
+//
+//		if (newValue != getAutomaton().getAccumulatorR().getCurrentValue()) {
+//			// La valeur trouvée est meilleure
+//			getAutomaton().getAccumulatorR().setStartXi(getAutomaton().getAccumulatorC().getStartXi());
+//			getAutomaton().getAccumulatorR().setEndXi(getAutomaton().getAccumulatorC().getEndXi());
+//			getAutomaton().getAccumulatorR().updateValue(newValue);
+//		} else if (currCValue == currBestValue) {
+//			// Egalité
+//		}
+
 	}
 
 	@Override

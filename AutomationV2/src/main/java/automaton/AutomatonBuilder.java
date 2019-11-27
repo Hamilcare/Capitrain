@@ -5,9 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import accumulators.AccumulatorC;
-import accumulators.AccumulatorD;
-import accumulators.AccumulatorR;
+import accumulators.finaux.AccumulatorR;
+import accumulators.tmp.AccumulatorC;
+import accumulators.tmp.AccumulatorD;
 import aggregators.IAggregator;
 import alphabet.Alphabet;
 import features.IFeature;

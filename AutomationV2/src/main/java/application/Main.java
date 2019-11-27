@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.util.List;
 
 import automaton.AutomatonBuilder;
 import automaton.AutomatonResult;
@@ -35,11 +36,11 @@ public class Main {
 				cliParser.getFeature(), cliParser.getAggregator(), translator);
 
 		AutomatonRunner automatonRunner = new AutomatonRunner(automaton);
-		AutomatonResult result = automatonRunner.run();
+		List<AutomatonResult> result = automatonRunner.run();
 
 		long endComputation = System.currentTimeMillis();
 
-		System.out.println(String.format("Result: %s, [%s,%s]", result.getValue(), result.getX1(), result.getX2()));
+//		System.out.println(String.format("Result: %s, [%s,%s]", result.getValue(), result.getX1(), result.getX2()));
 
 		System.out.println("Automaton Time : " + (endComputation - startComputation));
 		System.out.println("Total Time : " + (endComputation - startTranslation));

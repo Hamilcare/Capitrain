@@ -1,6 +1,10 @@
 package automaton;
 
-import accumulators.IAccumulator;
+import java.util.ArrayList;
+import java.util.List;
+
+import accumulators.finaux.IAccumulatorFinal;
+import accumulators.tmp.IAccumulatorTemporaire;
 import aggregators.IAggregator;
 import features.IFeature;
 import states.IState;
@@ -14,9 +18,9 @@ public class Automaton implements IAutomaton {
 	IAggregator aggregator;
 	ITranslator translator;
 
-	IAccumulator accumulatorD;
-	IAccumulator accumulatorC;
-	IAccumulator accumulatorR;
+	IAccumulatorTemporaire accumulatorD;
+	IAccumulatorTemporaire accumulatorC;
+	IAccumulatorFinal accumulatorR;
 
 	int inputSequenceLength;
 	IState currentState;
@@ -41,17 +45,17 @@ public class Automaton implements IAutomaton {
 	}
 
 	@Override
-	public IAccumulator getAccumulatorD() {
+	public IAccumulatorTemporaire getAccumulatorD() {
 		return accumulatorD;
 	}
 
 	@Override
-	public IAccumulator getAccumulatorC() {
+	public IAccumulatorTemporaire getAccumulatorC() {
 		return accumulatorC;
 	}
 
 	@Override
-	public IAccumulator getAccumulatorR() {
+	public IAccumulatorFinal getAccumulatorR() {
 		return accumulatorR;
 	}
 
@@ -87,22 +91,36 @@ public class Automaton implements IAutomaton {
 	}
 
 	@Override
-	public AutomatonResult getResult() {
+	public List<AutomatonResult> getResult() {
 		int start;
 		int end;
 
-		int result = this.aggregator.apply(this.accumulatorR.getCurrentValue(), this.accumulatorC.getCurrentValue());
-		if (result == this.accumulatorR.getCurrentValue()) {
-			start = this.accumulatorR.getStartXi();
-			end = this.accumulatorR.getEndXi();
-		} else {
-			start = this.accumulatorC.getStartXi();
-			end = this.accumulatorC.getEndXi();
+		int bestValue = getAccumulatorR().getCurrentValue();
+		int currentMatchValue = getAccumulatorC().getCurrentValue();
+		if (bestValue == currentMatchValue) {
+			getAccumulatorR().addStartXi(getAccumulatorC().getStartXi());
+			getAccumulatorR().addEndXi(getAccumulatorC().getEndXi());
 		}
 
-		int value = this.aggregator.apply(this.accumulatorR.getCurrentValue(), this.accumulatorC.getCurrentValue());
+		else {
+			int result = getAggregator().apply(currentMatchValue, bestValue);
+			if (result != bestValue) {
+				bestValue = result;
+				getAccumulatorR().setStartXi(getAccumulatorC().getStartXi());
+				getAccumulatorR().setEndXi(getAccumulatorC().getEndXi());
+				getAccumulatorR().updateValue(result);
+			}
+		}
 
-		return new AutomatonResult(value, start, end);
+		int nbResult = getAccumulatorR().getStartXi().size();
+		List<AutomatonResult> lstResult = new ArrayList<>(nbResult);
+
+		for (int i = 0; i < nbResult; i++) {
+			lstResult.add(new AutomatonResult(bestValue, getAccumulatorR().getStartXi().get(i),
+					getAccumulatorR().getEndXi().get(i)));
+		}
+
+		return lstResult;
 	}
 
 	@Override
@@ -116,7 +134,7 @@ public class Automaton implements IAutomaton {
 	}
 
 	@Override
-	public void setAccumulators(IAccumulator d, IAccumulator c, IAccumulator r) {
+	public void setAccumulators(IAccumulatorTemporaire d, IAccumulatorTemporaire c, IAccumulatorFinal r) {
 		this.accumulatorD = d;
 		this.accumulatorC = c;
 		this.accumulatorR = r;

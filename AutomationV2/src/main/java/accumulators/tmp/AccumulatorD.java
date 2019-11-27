@@ -1,16 +1,16 @@
-package accumulators;
+package accumulators.tmp;
 
 import automaton.IAutomaton;
 
-public class AccumulatorC extends AbstractAccumulator {
+public class AccumulatorD extends AbstractAccumulatorTemporaire {
 
-	public AccumulatorC(IAutomaton automaton) {
+	public AccumulatorD(IAutomaton automaton) {
 		super(automaton);
 	}
 
 	@Override
 	public void setToInitValue() {
-		this.currentValue = automaton.getAggregator().getDefault();
+		this.currentValue = getAutomaton().getFeature().getNeutral();
 		this.startXi = UNSET_POSITION;
 		this.endXi = UNSET_POSITION;
 	}

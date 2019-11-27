@@ -1,17 +1,15 @@
-package accumulators;
+package accumulators.tmp;
 
 import automaton.IAutomaton;
 
-public abstract class AbstractAccumulator implements IAccumulator {
+public abstract class AbstractAccumulatorTemporaire implements IAccumulatorTemporaire {
 
 	IAutomaton automaton;
 	int startXi;
 	int endXi;
 	int currentValue;
 
-	public static final int UNSET_POSITION = -1;
-
-	public AbstractAccumulator(IAutomaton automaton) {
+	public AbstractAccumulatorTemporaire(IAutomaton automaton) {
 		this.automaton = automaton;
 		startXi = UNSET_POSITION;
 		endXi = UNSET_POSITION;

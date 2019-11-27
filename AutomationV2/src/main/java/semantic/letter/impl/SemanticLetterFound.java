@@ -1,6 +1,6 @@
 package semantic.letter.impl;
 
-import static accumulators.AbstractAccumulator.UNSET_POSITION;
+import static accumulators.tmp.AbstractAccumulatorTemporaire.UNSET_POSITION;
 
 import automaton.IAutomaton;
 import semantic.letter.AbstractSemanticLetter;
