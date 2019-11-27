@@ -1,5 +1,9 @@
 # ReadMe
 
+_Valentin Quiédeville_  
+_Vivien Louradour_
+
+
 ## Quickstart
 ```bash
 java -jar main.jar <pathToPatternCsv> <Aggregator> <Feature> <ParserType> <PathToDataFile>
@@ -28,7 +32,7 @@ java -jar ./resources/pattern/peak.csv min width  ./resources/input/pi_commun_da
 ```
 
 ```bash
-java -jar ./resources/pattern/peak.csv min width  resources/input/other_dataset/consommation-quotidienne-totale.digt multiline
+java -jar ./resources/pattern/peak.csv min width  resources/input/other_dataset/consommation-quotidienne-totale multiline
 ```
 
 

@@ -7,8 +7,6 @@ import automaton.AutomatonBuilder;
 import automaton.AutomatonResult;
 import automaton.AutomatonRunner;
 import automaton.IAutomaton;
-import translation.ITranslator;
-import translation.impl.OneLineFileTranslator;
 import utils.CliParser;
 import utils.CliParserException;
 
