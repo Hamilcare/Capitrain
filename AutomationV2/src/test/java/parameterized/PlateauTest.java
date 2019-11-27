@@ -27,7 +27,7 @@ public class PlateauTest extends AbstractMinMaxParameterizedTest {
 	private static final String PATH_TO_INPUT = "./resources/input/catalogueExemples/plateau/";
 
 	@Parameterized.Parameters
-	public static Collection dataSet() {
+	public static Collection<Object[]> dataSet() {
 		// @formatter:off
 		return Arrays.asList(new Object[][] {
 				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test", Arrays.asList(new AutomatonResult(4, 3, 6)) },

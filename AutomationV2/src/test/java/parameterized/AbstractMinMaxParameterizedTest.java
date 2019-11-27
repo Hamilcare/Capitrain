@@ -59,10 +59,6 @@ public class AbstractMinMaxParameterizedTest {
 			}
 		}
 
-//		Assert.assertEquals("Value", this.expectedResult.getValue(), result.getValue());
-//		Assert.assertEquals("Borne inf.", this.expectedResult.getX1(), result.getX1());
-//		Assert.assertEquals("Borne sup.", this.expectedResult.getX2(), result.getX2());
-
 	}
 
 }
