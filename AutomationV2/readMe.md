@@ -1,7 +1,35 @@
 # ReadMe
 
 ## Quickstart
-java -jar main.jar
+```bash
+java -jar main.jar <pathToPatternCsv> <Aggregator> <Feature> <ParserType> <PathToDataFile>
+```
+
+__pathToPatternCsv__ path to the pattern csv 
+
+__aggregator__ choose among :
+* min
+* max
+
+__feature__ choose among : 
+* MAX
+* MIN
+* ONE
+* SURFACE
+* WIDHT
+
+__parserType__ choose among :
+* __single__ to parse a single line datafile
+* __multiline__ to parse a multi line datafile
+
+### Exemples
+```bash
+java -jar ./resources/pattern/peak.csv min width  ./resources/input/pi_commun_dataset/1000.digt single
+```
+
+```bash
+java -jar ./resources/pattern/peak.csv min width  resources/input/other_dataset/consommation-quotidienne-totale.digt multiline
+```
 
 
 ## Implemented Features
