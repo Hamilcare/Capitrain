@@ -1,19 +1,23 @@
 package utils;
 
 import java.io.File;
+import java.io.IOException;
 
 import aggregators.AggregatorFactory;
 import aggregators.IAggregator;
 import features.FeatureFactory;
 import features.IFeature;
+import translation.ITranslator;
+import translation.TranslatorFactory;
 
 public class CliParser {
 
-	private static final int NB_ARGS_REQUESTED = 4;
+	private static final int NB_ARGS_REQUESTED = 5;
 	private static final int POS_PATTERN_FILE = 0;
 	private static final int POS_FEATURE = 2;
 	private static final int POS_AGGREGATOR = 1;
 	private static final int POS_DATA_FILE = 3;
+	private static final int POS_PARSER_TYPE=4;
 
 	private String[] args;
 
@@ -21,12 +25,13 @@ public class CliParser {
 	private IFeature feature;
 	private IAggregator aggregator;
 	private String dataFilePath;
+	private ITranslator translator;
 
 	public CliParser(String[] args) {
 		this.args = args;
 	}
 
-	public void parse() throws CliParserException {
+	public void parse() throws CliParserException, IOException {
 		if (args.length != NB_ARGS_REQUESTED) {
 			throw new CliParserException("Wrong number of parameters : " + NB_ARGS_REQUESTED + " requested");
 		}
@@ -34,6 +39,7 @@ public class CliParser {
 		parseFeature();
 		parseAggregator();
 		parseDataFile();
+		parseParserType();
 	}
 
 	private void parsePatternFile() throws CliParserException {
@@ -70,6 +76,11 @@ public class CliParser {
 		}
 	}
 
+	private void parseParserType() throws CliParserException, IOException {
+		String parserName = args[POS_PARSER_TYPE];
+		this.translator = TranslatorFactory.createTranslatorFromName(this.getDataFilePath(), parserName);
+	}
+
 	public String getPatternFilePath() {
 		return this.patternFilePath;
 	}
@@ -85,5 +96,7 @@ public class CliParser {
 	public String getDataFilePath() {
 		return this.dataFilePath;
 	}
+
+	public ITranslator getTranslator() { return this.translator; }
 
 }
