@@ -11,20 +11,22 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
-	public static final String inputDirPath = "./resources/input/";
+	public static final String inputDirPath = "./BenchProgram/resources/input/";
 	public static final String[] files = { "10.digt", "100.digt", "1000.digt", "10000.digt", "100000.digt",
 			"1000000.digt", "5000000.digt", "10000000.digt", "50000000.digt", "100000000.digt" };
-	public static final String[] patterns = { "increasing", "increasing_sequence", "increasing_terrace", "summit",
-			"plateau", "proper_plateau", "strictly_increasing_sequence", "peak", "inflexion", "steady",
-			"steady_sequence", "zigzag" };
-	public static final String[] features = { "one", "width", "surf", "max", "min", "range" };
-	public static final String[] aggregators = { "max", "min", "sum" };
+//    public static final String[] patterns = { "increasing", "increasing_sequence", "increasing_terrace", "summit",
+//            "plateau", "proper_plateau", "strictly_increasing_sequence", "peak", "inflexion", "steady",
+//            "steady_sequence", "zigzag" };
+    public static final String patternsDirectory = "./AutomationV2/resources/pattern/";
+    public static final String[] patterns = { "peak.csv" };
+	public static final String[] features = { "one", "width", "surf", "max", "min" };
+	public static final String[] aggregators = { "max", "min" };
 	private static String jarPath;
 	private static String jarName;
 	private static String benchDirectory;
 	private static int[] filesSizes;
 
-	private static final int NB_TRY = 10;
+	private static final int NB_TRY = 1;
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -56,7 +58,7 @@ public class Main {
 						List<String> csvLines = new ArrayList<>();
 						csvLines.add("length;duration");
 						for (int fileIndex = 0; fileIndex < filesSizes.length; fileIndex++) {
-							long delay = benchFile(files[fileIndex], patterns[patternIndex], features[featureIndex],
+							long delay = benchFile(files[fileIndex], patternsDirectory + patterns[patternIndex], features[featureIndex],
 									aggregators[aggregatorIndex]);
 							csvLines.add(filesSizes[fileIndex] + ";" + delay);
 						}
@@ -83,19 +85,16 @@ public class Main {
 		writeCsv(String.format("%s-%s-%s", "all-patterns", feature, aggregation), resultats);
 	}
 
-	private static long benchFile(String file, String pattern, String feature, String aggregator)
+	private static long benchFile(String file, String patternFile, String feature, String aggregator)
 			throws IOException, InterruptedException {
-		String confAbsolutePath = new File("./resources/config/regex.config").getCanonicalPath();
-
 		try {
 			long startTranslation = System.currentTimeMillis();
 			for (int i = 0; i < NB_TRY; i++) {
 				String filePath = new File(inputDirPath + file).getCanonicalPath();
 				Runtime rt = Runtime.getRuntime();
-				System.out.println("java -jar " + jarPath + " -p " + pattern + " -f " + feature + " -a " + aggregator
-						+ " -d " + filePath + " -c " + confAbsolutePath);
-				Process pro = rt.exec("java -jar " + jarPath + " -p " + pattern + " -f " + feature + " -a " + aggregator
-						+ " -d " + filePath + " -c " + confAbsolutePath);
+				String commandLine = "java -Xmx14G -jar " + jarPath + " " + patternFile + " " + aggregator + " " + feature + " " + filePath;
+				System.out.println(commandLine);
+				Process pro = rt.exec(commandLine);
 
 				pro.waitFor();
 			}
