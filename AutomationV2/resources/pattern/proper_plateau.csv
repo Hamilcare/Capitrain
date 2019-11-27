@@ -6,3 +6,6 @@ s,r,t
 >,outr,r,t
 =,maybeb,r,t
 <,out,r,r
+>,founde,t,s
+=,maybeb,t,t
+<,outr,t,r

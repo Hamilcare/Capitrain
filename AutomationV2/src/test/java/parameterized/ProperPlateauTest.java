@@ -20,7 +20,6 @@ import automaton.AutomatonResult;
 import automaton.AutomatonRunner;
 import automaton.IAutomaton;
 import features.IFeature;
-import features.impl.Surface;
 import features.impl.Width;
 import translation.ITranslator;
 import translation.impl.OneLineFileTranslator;
@@ -33,20 +32,20 @@ public class ProperPlateauTest {
 	private String dataFilePath;
 	private AutomatonResult expectedResult;
 
-	private static final String PATH_TO_PATTERN = "./resources/pattern/plateau.csv";
+	private static final String PATH_TO_PATTERN = "./resources/pattern/proper_plateau.csv";
 
-	private static final String PATH_TO_INPUT = "./resources/input/catalogueExemples/plateau/";
+	private static final String PATH_TO_INPUT = "./resources/input/catalogueExemples/properPlateau/";
 
 	@Parameterized.Parameters
 	public static Collection<Object[]> dataSet() {
 		// @formatter:off
 		return Arrays.asList(new Object[][] {
-				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(4, 3, 6) },
-				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(3, 8, 10) },
-				{ new Sum(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_width.test",new AutomatonResult(7, NA, NA)},
-				{ new Max(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(10, 11, 12)},
-				{ new Min(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(3, 3, 3)},
-				{ new Sum(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"plateau_surf.test", new AutomatonResult(17, NA, NA)}
+				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"width_proper_plateau",new AutomatonResult(3, 12, 14) },
+				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"width_proper_plateau",new AutomatonResult(2, 2, 3) },
+				{ new Sum(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT+"width_proper_plateau",new AutomatonResult(7, NA, NA) },
+				{ new Max(), new features.impl.Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"width_proper_plateau",new AutomatonResult(15, 12, 14) },
+				{ new Min(), new features.impl.Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"width_proper_plateau",new AutomatonResult(6, 2, 3) },
+				{ new Sum(), new features.impl.Surface(), PATH_TO_PATTERN, PATH_TO_INPUT+"width_proper_plateau",new AutomatonResult(29, NA, NA) },
 		});
 
 		// @formatter:on
