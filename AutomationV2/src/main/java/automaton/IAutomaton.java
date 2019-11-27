@@ -2,12 +2,13 @@ package automaton;
 
 import java.util.List;
 
-import accumulators.finaux.IAccumulatorFinal;
-import accumulators.tmp.IAccumulatorTemporaire;
-import aggregators.IAggregator;
+import automaton.accumulators.finaux.IAccumulatorFinal;
+import automaton.accumulators.tmp.IAccumulatorTemporaire;
+import automaton.aggregators.IAggregator;
 import alphabet.Alphabet;
-import features.IFeature;
-import states.IState;
+import automaton.features.IFeature;
+import automaton.impl.AutomatonResult;
+import automaton.states.IState;
 import translation.ITranslator;
 
 public interface IAutomaton {

@@ -3,10 +3,10 @@ package utils;
 import java.io.File;
 import java.io.IOException;
 
-import aggregators.AggregatorFactory;
-import aggregators.IAggregator;
-import features.FeatureFactory;
-import features.IFeature;
+import automaton.aggregators.AggregatorFactory;
+import automaton.aggregators.IAggregator;
+import automaton.features.FeatureFactory;
+import automaton.features.IFeature;
 import translation.ITranslator;
 import translation.TranslatorFactory;
 

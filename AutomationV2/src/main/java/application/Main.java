@@ -3,9 +3,9 @@ package application;
 import java.io.IOException;
 import java.util.List;
 
-import automaton.AutomatonBuilder;
-import automaton.AutomatonResult;
-import automaton.AutomatonRunner;
+import automaton.impl.AutomatonBuilder;
+import automaton.impl.AutomatonResult;
+import automaton.impl.AutomatonRunner;
 import automaton.IAutomaton;
 import utils.CliParser;
 import utils.CliParserException;

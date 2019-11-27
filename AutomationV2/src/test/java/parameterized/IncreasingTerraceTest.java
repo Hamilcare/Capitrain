@@ -7,12 +7,12 @@ import java.util.List;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import aggregators.IAggregator;
-import aggregators.impl.Max;
-import aggregators.impl.Min;
-import automaton.AutomatonResult;
-import features.IFeature;
-import features.impl.Width;
+import automaton.aggregators.IAggregator;
+import automaton.aggregators.impl.Max;
+import automaton.aggregators.impl.Min;
+import automaton.impl.AutomatonResult;
+import automaton.features.IFeature;
+import automaton.features.impl.Width;
 
 @RunWith(Parameterized.class)
 public class IncreasingTerraceTest extends AbstractMinMaxParameterizedTest {
@@ -32,8 +32,8 @@ public class IncreasingTerraceTest extends AbstractMinMaxParameterizedTest {
 		return Arrays.asList(new Object[][] {
 				{ new Max(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(3, 11, 13)) },
 				{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(2, 5, 6)) },
-				{ new Max(), new features.impl.Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(10, 5, 6)) },
-				{ new Min(), new features.impl.Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(9, 11, 13)) }
+				{ new Max(), new automaton.features.impl.Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(10, 5, 6)) },
+				{ new Min(), new automaton.features.impl.Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(9, 11, 13)) }
 				
 		});
 

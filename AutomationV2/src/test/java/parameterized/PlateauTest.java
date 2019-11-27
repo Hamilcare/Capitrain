@@ -7,13 +7,13 @@ import java.util.List;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import aggregators.IAggregator;
-import aggregators.impl.Max;
-import aggregators.impl.Min;
-import automaton.AutomatonResult;
-import features.IFeature;
-import features.impl.Surface;
-import features.impl.Width;
+import automaton.aggregators.IAggregator;
+import automaton.aggregators.impl.Max;
+import automaton.aggregators.impl.Min;
+import automaton.impl.AutomatonResult;
+import automaton.features.IFeature;
+import automaton.features.impl.Surface;
+import automaton.features.impl.Width;
 
 @RunWith(Parameterized.class)
 public class PlateauTest extends AbstractMinMaxParameterizedTest {

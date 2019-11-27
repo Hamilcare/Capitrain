@@ -7,13 +7,13 @@ import java.util.List;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import aggregators.IAggregator;
-import aggregators.impl.Max;
-import aggregators.impl.Min;
-import automaton.AutomatonResult;
-import features.IFeature;
-import features.impl.Surface;
-import features.impl.Width;
+import automaton.aggregators.IAggregator;
+import automaton.aggregators.impl.Max;
+import automaton.aggregators.impl.Min;
+import automaton.impl.AutomatonResult;
+import automaton.features.IFeature;
+import automaton.features.impl.Surface;
+import automaton.features.impl.Width;
 
 @RunWith(Parameterized.class)
 public class StrictlyIncreasingSequenceTest extends AbstractMinMaxParameterizedTest {
@@ -35,8 +35,8 @@ public class StrictlyIncreasingSequenceTest extends AbstractMinMaxParameterizedT
 			{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(2, 1, 1))},
 			{ new Max(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(16, 6, 9))},
 			{ new Min(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(6, 13, 14))},
-			{ new Max(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(6, 6, 9))},
-			{ new Min(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(3, 13, 14))},
+			{ new Max(), new automaton.features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(6, 6, 9))},
+			{ new Min(), new automaton.features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(3, 13, 14))},
 		});
 
 		// @formatter:on

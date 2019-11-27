@@ -8,12 +8,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-import aggregators.IAggregator;
-import automaton.AutomatonBuilder;
-import automaton.AutomatonResult;
-import automaton.AutomatonRunner;
+import automaton.aggregators.IAggregator;
+import automaton.impl.AutomatonBuilder;
+import automaton.impl.AutomatonResult;
+import automaton.impl.AutomatonRunner;
 import automaton.IAutomaton;
-import features.IFeature;
+import automaton.features.IFeature;
 import translation.ITranslator;
 import translation.impl.OneLineFileTranslator;
 

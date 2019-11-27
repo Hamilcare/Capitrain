@@ -7,13 +7,13 @@ import java.util.List;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import aggregators.IAggregator;
-import aggregators.impl.Max;
-import aggregators.impl.Min;
-import automaton.AutomatonResult;
-import features.IFeature;
-import features.impl.Surface;
-import features.impl.Width;
+import automaton.aggregators.IAggregator;
+import automaton.aggregators.impl.Max;
+import automaton.aggregators.impl.Min;
+import automaton.impl.AutomatonResult;
+import automaton.features.IFeature;
+import automaton.features.impl.Surface;
+import automaton.features.impl.Width;
 
 @RunWith(Parameterized.class)
 public class SummitTest extends AbstractMinMaxParameterizedTest {
@@ -35,8 +35,8 @@ public class SummitTest extends AbstractMinMaxParameterizedTest {
 			{ new Min(), new Width(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(1, 14, 14))},
 			{ new Max(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(13, 2, 4))},
 			{ new Min(), new Surface(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(3, 14, 14))},
-			{ new Max(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(5, 2, 4))},
-			{ new Min(), new features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(3, 14, 14))},
+			{ new Max(), new automaton.features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(5, 2, 4))},
+			{ new Min(), new automaton.features.impl.Max(), PATH_TO_PATTERN, PATH_TO_INPUT,Arrays.asList(new AutomatonResult(3, 14, 14))},
 		});
 
 		// @formatter:on
