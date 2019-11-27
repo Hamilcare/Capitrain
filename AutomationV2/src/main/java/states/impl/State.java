@@ -11,11 +11,6 @@ public class State implements IState {
 	String label;
 	HashMap<Alphabet, ITransition> transitions;
 
-	public State(String label, HashMap<Alphabet, ITransition> transitions) {
-		this.label = label;
-		this.transitions = transitions;
-	}
-
 	public State(String label) {
 		this.label = label;
 		this.transitions = new HashMap<>();

@@ -92,8 +92,6 @@ public class Automaton implements IAutomaton {
 
 	@Override
 	public List<AutomatonResult> getResult() {
-		int start;
-		int end;
 
 		int bestValue = getAccumulatorR().getCurrentValue();
 		int currentMatchValue = getAccumulatorC().getCurrentValue();

@@ -55,14 +55,6 @@ public class AccumulatorR implements IAccumulatorFinal {
 	public List<Integer> getEndXi() {
 		return endXi;
 	}
-//	public AccumulatorR(IAutomaton automaton) {
-//		super(automaton);
-//	}
-//
-//	@Override
-//	public void setToInitValue() {
-//		this.currentValue = automaton.getAggregator().getDefault();
-//	}
 
 	@Override
 	public IAutomaton getAutomaton() {

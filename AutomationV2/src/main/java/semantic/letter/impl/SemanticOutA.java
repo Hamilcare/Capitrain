@@ -27,20 +27,6 @@ public class SemanticOutA extends AbstractSemanticLetter {
 			}
 		}
 
-//		int currCValue = getAutomaton().getAccumulatorC().getCurrentValue();
-//		int currBestValue = getAutomaton().getAccumulatorR().getCurrentValue();
-//
-//		int newValue = getAutomaton().getAggregator().apply(currBestValue, currCValue);
-//
-//		if (newValue != getAutomaton().getAccumulatorR().getCurrentValue()) {
-//			// La valeur trouvée est meilleure
-//			getAutomaton().getAccumulatorR().setStartXi(getAutomaton().getAccumulatorC().getStartXi());
-//			getAutomaton().getAccumulatorR().setEndXi(getAutomaton().getAccumulatorC().getEndXi());
-//			getAutomaton().getAccumulatorR().updateValue(newValue);
-//		} else if (currCValue == currBestValue) {
-//			// Egalité
-//		}
-
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package semantic.letter.impl;
 
 import automaton.IAutomaton;
-import semantic.letter.AbstractSemanticLetter;
 
 public class SemanticMaybeA0 extends SemanticMaybeA {
 

@@ -7,10 +7,12 @@ import parameterized.IncreasingTest;
 import parameterized.PeakTest;
 import parameterized.PlateauTest;
 import parameterized.ProperPlateauTest;
+import parameterized.StrictlyIncreasingSequenceTest;
+import parameterized.SummitTest;
 
 @RunWith(org.junit.runners.Suite.class)
-@SuiteClasses({ PeakTest.class, PlateauTest.class, IncreasingTest.class, IncreasingSequenceTest.class,
-		IncreasingTerraceTest.class, ProperPlateauTest.class })
+@SuiteClasses({ PeakTest.class, IncreasingTest.class, PlateauTest.class, IncreasingSequenceTest.class,
+		IncreasingTerraceTest.class, ProperPlateauTest.class, SummitTest.class, StrictlyIncreasingSequenceTest.class })
 public class Suite {
 
 }

@@ -58,7 +58,6 @@ public class AutomatonBuilder {
 			ITransition newTransition = new Transition(Alphabet.asEnum(transitionParams[0]),
 					SemanticLetterFactory.getSemantic(transitionParams[1], automaton, after),
 					StateFactory.getStateFromLabel(transitionParams[3]));
-
 			StateFactory.getStateFromLabel(transitionParams[2]).addTransition(newTransition);
 		}
 
