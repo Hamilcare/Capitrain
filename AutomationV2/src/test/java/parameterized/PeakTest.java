@@ -15,7 +15,7 @@ import features.IFeature;
 import features.impl.Width;
 
 @RunWith(Parameterized.class)
-public class PeakTest extends AbstractParameterizedTest {
+public class PeakTest extends AbstractMinMaxParameterizedTest {
 
 	public PeakTest(IAggregator aggregator, IFeature feature, String patternFilePath, String dataFilePath,
 			List<AutomatonResult> expectedResult) {
@@ -29,16 +29,15 @@ public class PeakTest extends AbstractParameterizedTest {
 	private List<AutomatonResult> expectedResult;
 
 	@Parameterized.Parameters
-	public static Collection dataSet() {
+	public static Collection<Object[]> dataSet() {
 		// @formatter:off
 		return Arrays.asList(new Object[][] {
 			{ new Max(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", Arrays.asList(new AutomatonResult(3, 8, 10),new AutomatonResult(3, 12, 14)) },
 			{ new Min(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", Arrays.asList(new AutomatonResult(2, 4, 5)) },
-//				{ new Max(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(3, 8, 10) },
-//				{ new Min(), new Width(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(2, 4, 5) },
-//				{ new Min(), new features.impl.Max(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(3, 12, 14)},
-//				{ new Max(), new features.impl.Max(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(6, 8, 10)},
-//				{ new Max(), new features.impl.Surface(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", new AutomatonResult(14, 8, 10)},
+			{ new Min(), new features.impl.Max(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", Arrays.asList(new AutomatonResult(3, 12, 14)) },
+			{ new Max(), new features.impl.Max(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", Arrays.asList(new AutomatonResult(6, 8, 10))},
+			{ new Max(), new features.impl.Surface(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", Arrays.asList(new AutomatonResult(14, 8, 10))},
+			{ new Min(), new features.impl.Surface(), "./resources/pattern/peak.csv", "./resources/input/catalogueExemples/peak", Arrays.asList(new AutomatonResult(9, 4, 5	),new AutomatonResult(9, 12, 14))},
 		});
 		// @formatter:on
 	}

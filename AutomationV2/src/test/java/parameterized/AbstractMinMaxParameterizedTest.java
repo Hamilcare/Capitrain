@@ -17,14 +17,14 @@ import features.IFeature;
 import translation.ITranslator;
 import translation.impl.OneLineFileTranslator;
 
-public class AbstractParameterizedTest {
+public class AbstractMinMaxParameterizedTest {
 	private IAggregator aggregator;
 	private IFeature feature;
 	private String patternFilePath;
 	private String dataFilePath;
 	private List<AutomatonResult> expectedResult;
 
-	public AbstractParameterizedTest(IAggregator aggregator, IFeature feature, String patternFilePath,
+	public AbstractMinMaxParameterizedTest(IAggregator aggregator, IFeature feature, String patternFilePath,
 			String dataFilePath, List<AutomatonResult> expectedResult) {
 		this.aggregator = aggregator;
 		this.feature = feature;
@@ -45,7 +45,7 @@ public class AbstractParameterizedTest {
 		List<AutomatonResult> result = automatonRunner.run();
 
 		assertEquals("nbResult : ", this.expectedResult.size(), result.size());
-		if (result.size() > 0) {
+		if (!result.isEmpty()) {
 			assertEquals("Value", this.expectedResult.get(0).getValue(), result.get(0).getValue());
 		}
 

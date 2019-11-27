@@ -23,32 +23,4 @@ public class AutomatonResult {
 		this.x2 = x2;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + value;
-		result = prime * result + x1;
-		result = prime * result + x2;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AutomatonResult other = (AutomatonResult) obj;
-		if (value != other.value)
-			return false;
-		if (x1 != other.x1)
-			return false;
-		if (x2 != other.x2)
-			return false;
-		return true;
-	}
-
 }
