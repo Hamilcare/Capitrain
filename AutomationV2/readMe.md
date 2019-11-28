@@ -24,15 +24,15 @@ __feature__ choose among :
 
 __parserType__ choose among :
 * __single__ to parse a single line datafile
-* __multiline__ to parse a multi line datafile
+* __multiple__ to parse a multi line datafile
 
 ### Exemples
 ```bash
-java -jar ./resources/pattern/peak.csv min width  ./resources/input/pi_commun_dataset/1000.digt single
+java -jar Main.jar ./resources/pattern/peak.csv min width  ./resources/input/pi_commun_dataset/1000.digt single
 ```
 
 ```bash
-java -jar ./resources/pattern/peak.csv min width  resources/input/other_dataset/consommation-quotidienne-totale multiline
+java -jar Main.jar ./resources/pattern/peak.csv min width  resources/input/other_dataset/consommation-quotidienne-totale multiple
 ```
 
 

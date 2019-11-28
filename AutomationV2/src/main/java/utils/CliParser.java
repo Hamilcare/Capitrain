@@ -79,6 +79,9 @@ public class CliParser {
 	private void parseParserType() throws CliParserException, IOException {
 		String parserName = args[POS_PARSER_TYPE];
 		this.translator = TranslatorFactory.createTranslatorFromName(this.getDataFilePath(), parserName);
+		if(this.translator == null){
+			throw new CliParserException("Parser type " + args[POS_DATA_FILE] + " is not valid");
+		}
 	}
 
 	public String getPatternFilePath() {
